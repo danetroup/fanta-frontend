@@ -1,0 +1,140 @@
+/* src/styles/themes.css */
+
+/* --- Theme Definitions (Classes applied to document.documentElement) --- */
+
+/* Light Theme (Default for the system if no dark preference) */
+.light {
+  --app-primary-color: rgb(37, 99, 235);
+  --app-secondary-color: rgb(249, 115, 22);
+  --app-accent-color: rgb(102, 126, 234);
+  --app-text-color: rgb(31, 41, 55);
+  --app-bg-color: rgb(243, 244, 246);
+  --app-card-bg-color: rgb(255, 255, 255);
+  --app-border-color: rgb(229, 231, 235);
+  --app-bg-color-hover: rgb(230, 230, 230); /* Re-added hover color */
+
+  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  --app-primary-color-raw: 37, 99, 235;
+  --app-text-color-raw: 31, 41, 55;
+  --app-bg-color-raw: 243, 244, 246;
+}
+
+/* Dark Theme */
+.dark {
+  --app-primary-color: rgb(96, 165, 250);
+  --app-secondary-color: rgb(251, 146, 60);
+  --app-accent-color: rgb(129, 140, 248);
+  --app-text-color: rgb(209, 213, 219);
+  --app-bg-color: rgb(17, 24, 39);
+  --app-card-bg-color: rgb(31, 41, 55);
+  --app-border-color: rgb(55, 65, 81);
+  --app-bg-color-hover: rgb(30, 40, 60); /* Re-added hover color */
+
+  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  --app-primary-color-raw: 96, 165, 250;
+  --app-text-color-raw: 209, 213, 219;
+  --app-bg-color-raw: 17, 24, 39;
+}
+
+/* Corporate Theme */
+.corporate {
+  --app-primary-color: rgb(16, 185, 129);
+  --app-secondary-color: rgb(252, 211, 77);
+  --app-accent-color: rgb(110, 231, 183);
+  --app-text-color: rgb(55, 65, 81);
+  --app-bg-color: rgb(249, 250, 251);
+  --app-card-bg-color: rgb(255, 255, 255);
+  --app-border-color: rgb(209, 213, 219);
+  --app-bg-color-hover: rgb(240, 240, 240); /* Re-added hover color */
+
+  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  --app-primary-color-raw: 16, 185, 129;
+  --app-text-color-raw: 55, 65, 81;
+  --app-bg-color-raw: 249, 250, 251;
+}
+
+/* Midnight Theme */
+.midnight {
+  --app-primary-color: rgb(129, 140, 248);
+  --app-secondary-color: rgb(192, 132, 252);
+  --app-accent-color: rgb(99, 102, 241);
+  --app-text-color: rgb(226, 232, 240);
+  --app-bg-color: rgb(15, 23, 42);
+  --app-card-bg-color: rgb(30, 41, 59);
+  --app-border-color: rgb(71, 85, 105);
+  --app-bg-color-hover: rgb(25, 35, 55); /* Re-added hover color */
+
+  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  --app-primary-color-raw: 129, 140, 248;
+  --app-text-color-raw: 226, 232, 240;
+  --app-bg-color-raw: 15, 23, 42;
+}
+
+/*
+* AG Grid Theme Overrides - Apply these inside the .ag-theme-quartz class
+* This ensures higher specificity when a theme class is active on HTML.
+*/
+
+html.light .ag-theme-quartz {
+  --ag-foreground-color: rgb(31, 41, 55);
+  --ag-background-color: rgb(255, 255, 255);
+  --ag-header-background-color: rgb(243, 244, 246);
+  --ag-odd-row-background-color: rgb(243, 244, 246);
+  --ag-even-row-background-color: rgb(255, 255, 255);
+  --ag-border-color: rgb(229, 231, 235);
+  --ag-row-hover-color: rgb(240, 240, 240);
+  --ag-selected-row-background-color: rgb(209, 226, 250);
+  --ag-active-color: rgb(37, 99, 235);
+  --ag-range-selection-background-color: rgba(37, 99, 235, 0.2);
+  --ag-range-selection-background-color-2: rgba(37, 99, 235, 0.25);
+  --ag-range-selection-background-color-3: rgba(37, 99, 235, 0.3);
+  --ag-range-selection-background-color-4: rgba(37, 99, 235, 0.35);
+}
+
+html.dark .ag-theme-quartz {
+  --ag-foreground-color: rgb(209, 213, 219);
+  --ag-background-color: rgb(31, 41, 55);
+  --ag-header-background-color: rgb(17, 24, 39);
+  --ag-odd-row-background-color: rgb(17, 24, 39);
+  --ag-even-row-background-color: rgb(31, 41, 55);
+  --ag-border-color: rgb(55, 65, 81);
+  --ag-row-hover-color: rgb(44, 53, 71);
+  --ag-selected-row-background-color: rgb(59, 130, 246);
+  --ag-active-color: rgb(96, 165, 250);
+  --ag-range-selection-background-color: rgba(96, 165, 250, 0.2);
+  --ag-range-selection-background-color-2: rgba(96, 165, 250, 0.25);
+  --ag-range-selection-background-color-3: rgba(96, 165, 250, 0.3);
+  --ag-range-selection-background-color-4: rgba(96, 165, 250, 0.35);
+}
+
+html.corporate .ag-theme-quartz {
+  --ag-foreground-color: rgb(55, 65, 81);
+  --ag-background-color: rgb(255, 255, 255);
+  --ag-header-background-color: rgb(249, 250, 251);
+  --ag-odd-row-background-color: rgb(249, 250, 251);
+  --ag-even-row-background-color: rgb(255, 255, 255);
+  --ag-border-color: rgb(209, 213, 219);
+  --ag-row-hover-color: rgb(224, 242, 247);
+  --ag-selected-row-background-color: rgb(167, 243, 208);
+  --ag-active-color: rgb(16, 185, 129);
+  --ag-range-selection-background-color: rgba(16, 185, 129, 0.2);
+  --ag-range-selection-background-color-2: rgba(16, 185, 129, 0.25);
+  --ag-range-selection-background-color-3: rgba(16, 185, 129, 0.3);
+  --ag-range-selection-background-color-4: rgba(16, 185, 129, 0.35);
+}
+
+html.midnight .ag-theme-quartz {
+  --ag-foreground-color: rgb(226, 232, 240);
+  --ag-background-color: rgb(30, 41, 59);
+  --ag-header-background-color: rgb(15, 23, 42);
+  --ag-odd-row-background-color: rgb(15, 23, 42);
+  --ag-even-row-background-color: rgb(30, 41, 59);
+  --ag-border-color: rgb(71, 85, 105);
+  --ag-row-hover-color: rgb(44, 59, 83);
+  --ag-selected-row-background-color: rgb(79, 70, 229);
+  --ag-active-color: rgb(129, 140, 248);
+  --ag-range-selection-background-color: rgba(129, 140, 248, 0.2);
+  --ag-range-selection-background-color-2: rgba(129, 140, 248, 0.25);
+  --ag-range-selection-background-color-3: rgba(129, 140, 248, 0.3);
+  --ag-range-selection-background-color-4: rgba(129, 140, 248, 0.35);
+}

@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+// Layout & Context
+import DefaultLayout from './layouts/DefaultLayout';
+
+// Pages
+import Dashboard from './pages/Dashboard';
+import DataGridPage from './pages/DataGridPage';
+import ChartsPage from './pages/ChartsPage';
+import Styleguide from './pages/Styleguide';
+import LibraryOverviewPage from './pages/LibraryOverviewPage'; // <--- ADD THIS IMPORT
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <DefaultLayout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/data-grid" element={<DataGridPage />} />
+          <Route path="/charts" element={<ChartsPage />} />
+          <Route path="/styleguide" element={<Styleguide />} />
+          <Route path="/libraries" element={<LibraryOverviewPage />} /> {/* <--- ADD THIS ROUTE */}
+        </Routes>
+      </DefaultLayout>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

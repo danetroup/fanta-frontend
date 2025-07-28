@@ -1,0 +1,19 @@
+// src/styles/_ag-custom-theme.scss
+
+// Verified direct import path for AG Grid's Quartz theme Sass
+@import "ag-grid-community/styles/ag-theme-quartz.css"; // <--- VERIFIED DIRECT PATH
+
+// AG Grid variable overrides using our CSS variables
+$ag-background-color: var(--app-card-bg-color);
+$ag-foreground-color: var(--app-text-color);
+$ag-header-background-color: var(--app-bg-color);
+$ag-odd-row-background-color: var(--app-bg-color);
+$ag-even-row-background-color: var(--app-card-bg-color);
+$ag-border-color: var(--app-border-color);
+$ag-row-hover-color: var(--app-bg-color-hover);
+$ag-selected-row-background-color: var(--app-primary-color);
+$ag-active-color: var(--app-accent-color);
+$ag-range-selection-background-color: var(--app-primary-color);
+$ag-range-selection-background-color-2: var(--app-primary-color);
+$ag-range-selection-background-color-3: var(--app-primary-color);
+$ag-range-selection-background-color-4: var(--app-primary-color);
