@@ -1,19 +1,73 @@
-// src/components/ui/Card.tsx
 import React from 'react';
 
+/**
+ * Props for the Card component.
+ * Allows for customization of background, border, padding, and shadow.
+ */
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  // Add any specific props here if needed later
+  /**
+   * Custom Tailwind CSS class for the background.
+   * @default 'bg-card'
+   */
+  background?: string;
+  /**
+   * Custom Tailwind CSS class for the border.
+   * @default 'border border-border'
+   */
+  border?: string;
+  /**
+   * Custom Tailwind CSS class for padding.
+   * @default undefined (no padding is applied by default)
+   * @example 'p-4', 'p-6'
+   */
+  padding?: string;
+  /**
+   * Custom Tailwind CSS class for the box-shadow.
+   * @default undefined (no shadow is applied by default)
+   * @example 'shadow-md', 'shadow-lg'
+   */
+  shadow?: string;
 }
 
-const Card: React.FC<CardProps> = ({ children, className, ...props }) => {
-  const baseStyles = 'rounded-lg shadow-md';
-  const themeStyles = 'bg-card border border-border';
+/**
+ * A flexible card component with customizable styles.
+ * It serves as a container for content, adapting to the current theme
+ * while allowing for style overrides via props.
+ */
+const Card: React.FC<CardProps> = ({
+  children,
+  className,
+  background,
+  border,
+  padding,
+  shadow,
+  ...props
+}) => {
+  // Default styles from the theme that can be overridden by props.
+  const defaultBackground = 'bg-card';
+  const defaultBorder = 'border border-border';
+
+  // Base style is always applied for consistency.
+  const baseStyles = 'rounded-lg';
+
+  // Build the list of classes.
+  // - Use the provided prop value if it exists.
+  // - Otherwise, use the theme-based default.
+  // - The user can pass an empty string (e.g., border="") to remove a default style.
+  // - Additional classes from the `className` prop are always appended.
+  const finalClassName = [
+    baseStyles,
+    background !== undefined ? background : defaultBackground,
+    border !== undefined ? border : defaultBorder,
+    padding, // Only added if the prop is provided
+    shadow,  // Only added if the prop is provided
+    className, // Allows for further customization and overrides
+  ]
+    .filter(Boolean) // Remove any falsy values (null, undefined, '')
+    .join(' ');
 
   return (
-    <div
-      className={`${baseStyles} ${themeStyles} ${className || ''}`}
-      {...props}
-    >
+    <div className={finalClassName} {...props}>
       {children}
     </div>
   );

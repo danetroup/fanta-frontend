@@ -1,7 +1,7 @@
 // src/styles/_custom-datepicker-theme.scss
 
 // Import the base datepicker styles
-@import "react-datepicker/src/stylesheets/datepicker.scss";
+@use "react-datepicker/src/stylesheets/datepicker.scss";
 
 // Apply our theme variables to react-datepicker classes
 .react-datepicker {
