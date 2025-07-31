@@ -1,18 +1,17 @@
 import React from 'react';
 
-// Import all the new section components
+// Import all the section components
 import FeedbackSection from './styleguide-sections/feedback/FeedbackSection';
 import FormsSection from './styleguide-sections/forms/FormsSection';
 import NavigationSection from './styleguide-sections/navigation/NavigationSection';
 import LayoutSection from './styleguide-sections/layout/LayoutSection';
 import TablesSection from './styleguide-sections/tables/TablesSection';
 import ChartsSection from './styleguide-sections/charts/ChartsSection';
-import UtilitiesSection from './styleguide-sections/utilities/UtilitiesSection'; // <-- Import the new section
-import { Tabs, TabPanel } from '../components/ui/Tabs'; // <--- Import Tabs component
-
-// No longer need most useState, useTheme, useToast here, as they are in individual sections
-// Remove other individual component imports as well if they are not used directly in this file
-// (e.g., Button, Input, Card, Modal, Select, Checkbox, Radio, Tooltip, Menu, List, Drawer, FormTemplate, ComboBox, MultiSelect, DatePicker, FileUpload, EmptyState, Table, Pagination, RichTextEditor)
+import UtilitiesSection from './styleguide-sections/utilities/UtilitiesSection';
+import IconsSection from './styleguide-sections/icons/IconsSection';
+import TemplatesSection from './styleguide-sections/templates/TemplatesSection';
+import ElementsSection from './styleguide-sections/elements/ElementsSection'; // <-- Import the new section
+import { Tabs, TabPanel } from '../components/ui/Tabs';
 
 const Styleguide: React.FC = () => {
   return (
@@ -22,6 +21,12 @@ const Styleguide: React.FC = () => {
       <Tabs defaultActiveTab="layout-section">
         <TabPanel id="layout-section" label="Layout">
           <LayoutSection />
+        </TabPanel>
+        <TabPanel id="templates-section" label="Templates">
+          <TemplatesSection />
+        </TabPanel>
+        <TabPanel id="elements-section" label="Elements">
+          <ElementsSection />
         </TabPanel>
         <TabPanel id="forms-section" label="Forms">
           <FormsSection />
@@ -38,11 +43,12 @@ const Styleguide: React.FC = () => {
         <TabPanel id="feedback-section" label="Feedback">
           <FeedbackSection />
         </TabPanel>
-        {/* Add the new tab for Utilities */}
         <TabPanel id="utilities-section" label="Utilities">
           <UtilitiesSection />
         </TabPanel>
-        
+        <TabPanel id="icons-section" label="Icons">
+          <IconsSection />
+        </TabPanel>
       </Tabs>
     </div>
   );

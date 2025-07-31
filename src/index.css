@@ -3,12 +3,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities"; /* Official v3 imports */
 
-/* No direct AG Grid CSS imports here anymore. */
 /* Our custom Sass theme will handle this. */
-
 @import "./styles/_ag-custom-theme.scss";
 @import "./styles/_custom-datepicker-theme.scss";
 @import "./styles/themes.css";
+@import "./styles/tippy-theme.css"; /* <-- ADD THIS LINE FOR THE TOOLTIP THEME */
 
 
 /* Basic Global Styles using our theme variables */

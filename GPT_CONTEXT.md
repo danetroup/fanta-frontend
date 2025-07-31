@@ -31,9 +31,10 @@ The project exists as a public GitHub repository, serving as a **boilerplate sta
     * **Overrides:** Custom Sass files (`_ag-custom-theme.scss`, `_custom-datepicker-theme.scss`) are used to override default styles of third-party libraries (AG Grid, React Datepicker) using our theme's CSS variables, ensuring consistent theming across all UI elements.
 
 2.  **Core UI Components (`src/components/ui`):** All components are written in TypeScript and are theme-aware.
-    * `Button.tsx`: Versatile button component (primary, secondary, danger, outline variants; sm, md, lg sizes; disabled states).
+    * `Button.tsx`: A highly versatile button component with multiple variants (`primary`, `secondary`, `accent`, `danger`, `outline`, `ghost`, `link`), sizes (`sm`, `md`, `lg`), and states (`disabled`, `loading`). Supports `fullWidth` layout and `iconBefore`/`iconAfter` props.
+    * `ButtonGroup.tsx`: A container that visually groups multiple buttons. It can function as a simple visual group or as a stateful segmented control (radio group) by managing a selected state.
     * `Input.tsx`: Standard text input field.
-    * `Card.tsx`: Generic container component.
+    * `Card.tsx`: Generic container component with customizable styles for background, border, padding, and shadow.
     * `Modal.tsx`: Basic, reusable dialog modal.
     * `Select.tsx`: Standard dropdown select component.
     * `Checkbox.tsx`: Checkbox input.

@@ -5,6 +5,7 @@ import Input from '../../../components/ui/Input';
 import Select from '../../../components/ui/Select';
 import Modal from '../../../components/ui/Modal';
 import Drawer from '../../../components/ui/Drawer';
+import Icon from '../../../components/ui/Icon'; // <-- Import the new Icon component
 import { Accordion, AccordionItem } from '../../../components/ui/Accordion';
 import { useTheme, type ThemeName } from '../../../contexts';
 
@@ -19,7 +20,6 @@ const LayoutSection: React.FC = () => {
   const [isBottomDrawerOpen, setIsBottomDrawerOpen] = useState(false);
 
   return (
-    // Replaced the wrapping Card with a div to remove the outer container
     <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold mb-4 text-text">Layout & Structure Components</h2>
       <p className="text-text-light mb-6">
@@ -78,6 +78,35 @@ const LayoutSection: React.FC = () => {
             <div className="flex items-baseline justify-between"><h6 className="text-lg font-light text-text">Heading 6</h6><code className="text-sm text-text-light">.text-lg .font-light</code></div>
             <div className="flex items-baseline justify-between"><p className="text-base text-text">Paragraph text</p><code className="text-sm text-text-light">.text-base</code></div>
             <div className="flex items-baseline justify-between"><p className="text-sm text-text-light">Small text for captions</p><code className="text-sm text-text-light">.text-sm .text-text-light</code></div>
+        </div>
+      </Card>
+
+      {/* Icon Section */}
+      <Card padding="p-6">
+        <h3 className="text-2xl font-semibold mb-4 text-text">Icons</h3>
+        <p className="text-text-light mb-6">
+          Use the `Icon` component to render any icon from the Lucide library. See the "Icons" tab or the{' '}
+          <a href="https://lucide.dev/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            official Lucide website
+          </a>{' '}
+          for a full gallery.
+        </p>
+        <div className="flex flex-wrap items-center gap-6">
+          <div className="flex items-center gap-2">
+            <Icon name="home" />
+            <span>Default</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Icon name="user" size={24} className="text-primary" />
+            <span>Sized & Colored</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Icon name="settings" size={32} strokeWidth={1.5} />
+            <span>Custom Stroke</span>
+          </div>
+          <Button variant="primary" iconBefore={<Icon name="plus" size={16} />}>
+            Icon in Button
+          </Button>
         </div>
       </Card>
 

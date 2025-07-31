@@ -1,8 +1,7 @@
-// src/pages/styleguide-sections/feedback/FeedbackSection.tsx
 import React from 'react';
 import Card from '../../../components/ui/Card';
 import Button from '../../../components/ui/Button';
-import Tooltip from '../../../components/ui/Tooltip';
+import TippyTooltip from '../../../components/ui/TippyTooltip'; // <-- Replaced with TippyTooltip
 import EmptyState from '../../../components/ui/EmptyState';
 import { useToast } from '../../../components/ui/ToastContainer';
 import { type ToastType } from '../../../components/ui/Toast';
@@ -22,20 +21,20 @@ const FeedbackSection: React.FC = () => {
     <Card className="p-6">
       <h2 className="text-3xl font-semibold mb-4 text-text">Feedback Components</h2>
 
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Tooltips</h3>
+      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Tooltips (using Tippy.js)</h3>
       <div className="flex flex-wrap items-center gap-8">
-        <Tooltip content="This is a top tooltip." position="top">
+        <TippyTooltip content="This is a top tooltip." placement="top">
           <Button variant="secondary">Hover Me (Top)</Button>
-        </Tooltip>
-        <Tooltip content="This is a right tooltip with more content." position="right">
+        </TippyTooltip>
+        <TippyTooltip content="This is a right tooltip with more content." placement="right">
           <Button variant="secondary">Hover Me (Right)</Button>
-        </Tooltip>
-        <Tooltip content="Tooltip at the bottom." position="bottom">
+        </TippyTooltip>
+        <TippyTooltip content="Tooltip at the bottom." placement="bottom">
           <Button variant="secondary">Hover Me (Bottom)</Button>
-        </Tooltip>
-        <Tooltip content="Left-aligned tooltip." position="left">
+        </TippyTooltip>
+        <TippyTooltip content="Left-aligned tooltip." placement="left">
           <Button variant="secondary">Hover Me (Left)</Button>
-        </Tooltip>
+        </TippyTooltip>
       </div>
 
       <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Toast Notifications</h3>

@@ -1,0 +1,30 @@
+/* Custom Tippy.js theme to match the Fanta Frontend design system.
+  This file should be imported into your main CSS entry point.
+*/
+
+.tippy-box[data-theme~='fanta'] {
+  background-color: var(--app-primary-color);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  /* Use a filter for a cleaner shadow that includes the arrow */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+.tippy-box[data-theme~='fanta'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: var(--app-primary-color);
+}
+.tippy-box[data-theme~='fanta'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: var(--app-primary-color);
+}
+.tippy-box[data-theme~='fanta'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: var(--app-primary-color);
+}
+.tippy-box[data-theme~='fanta'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: var(--app-primary-color);
+}
+
+.tippy-content {
+  padding: 0.5rem 0.75rem;
+}

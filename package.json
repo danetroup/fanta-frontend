@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
     "@types/react-datepicker": "^6.2.0",
     "ag-grid-community": "^34.0.2",
     "ag-grid-react": "^34.0.2",
+    "lucide-react": "^0.534.0",
     "react": "^19.1.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
