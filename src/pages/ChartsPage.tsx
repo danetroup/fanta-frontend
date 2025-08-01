@@ -4,12 +4,16 @@ import React from 'react';
 import BarChart from '../components/charts/BarChart';
 import LineChart from '../components/charts/LineChart';
 import Card from '../components/ui/Card';
+import PageHeader from '../components/templates/PageHeader'; // <-- Import PageHeader
 import { mockChartData } from '../data/mockData';
 
 const ChartsPage: React.FC = () => {
   return (
     <div className="p-8 space-y-8">
-      <h1 className="text-4xl font-bold text-text mb-6">Charts Showcase</h1>
+      <PageHeader
+        title="Charts Showcase"
+        description="A collection of theme-aware charts powered by the Recharts library."
+      />
 
       {/* Bar Chart Section */}
       <Card className="p-6">

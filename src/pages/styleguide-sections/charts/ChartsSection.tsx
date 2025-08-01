@@ -1,45 +1,69 @@
-// src/pages/styleguide-sections/charts/ChartsSection.tsx
 import React from 'react';
-import Card from '../../../components/ui/Card'; // Re-use Card for container
 import BarChart from '../../../components/charts/BarChart';
 import LineChart from '../../../components/charts/LineChart';
-import EmptyState from '../../../components/ui/EmptyState';
-import { mockChartData } from '../../../data/mockData'; // Import mock chart data
+import PieChart from '../../../components/charts/PieChart';
+import ChartWithTable from '../../../components/charts/ChartWithtable'; // <-- Corrected casing
+import { mockChartData, mockPieChartData } from '../../../data/mockData';
 
 const ChartsSection: React.FC = () => {
   return (
     <div className="space-y-8 p-6">
-      <h2 className="text-3xl font-semibold mb-4 text-text">Charting Components</h2>
+      <h2 className="text-3xl font-semibold text-text">Charts & Data Visualization</h2>
+      <p className="text-text-light">
+        These components are wrappers around the Recharts library, designed to be theme-aware and easy to use. Each chart includes a menu to view its data in a table.
+      </p>
 
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Bar Chart</h3>
-      <BarChart
+      {/* Bar Chart with Table View */}
+      <ChartWithTable
         title="Monthly Revenue"
         data={mockChartData}
-        dataKeyX="name"
-        barKeys={[
-          { key: 'pv', color: '#8884d8' }, // Purple-ish
-          { key: 'uv', color: '#82ca9d' }, // Green-ish
-          { key: 'amt', color: '#ffc658' }, // Yellow-ish
+        tableHeaders={[
+          { key: 'name', label: 'Month' },
+          { key: 'pv', label: 'Page Views' },
+          { key: 'uv', label: 'Unique Visitors' },
         ]}
-      />
+      >
+        <BarChart
+          data={mockChartData}
+          dataKeyX="name"
+          barKeys={[
+            { key: 'pv', color: '#8884d8' },
+            { key: 'uv', color: '#82ca9d' },
+          ]}
+        />
+      </ChartWithTable>
 
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Line Chart</h3>
-      <LineChart
-        title="Monthly User Growth"
+      {/* Line Chart with Table View */}
+      <ChartWithTable
+        title="User Growth"
         data={mockChartData}
-        dataKeyX="name"
-        lineKeys={[
-          { key: 'uv', color: '#FF7F50' }, // Coral
-          { key: 'pv', color: '#6A5ACD' }, // SlateBlue
+        tableHeaders={[
+            { key: 'name', label: 'Month' },
+            { key: 'uv', label: 'UV' },
+            { key: 'pv', label: 'PV' },
         ]}
-      />
+      >
+        <LineChart
+          data={mockChartData}
+          dataKeyX="name"
+          lineKeys={[
+            { key: 'uv', color: '#FF7F50' },
+            { key: 'pv', color: '#6A5ACD' },
+          ]}
+        />
+      </ChartWithTable>
 
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Pie Chart (Future)</h3>
-      <EmptyState
-        title="Pie Chart Coming Soon!"
-        description="This section will feature a theme-aware Recharts Pie Chart when implemented."
-        icon="🥧"
-      />
+      {/* Pie Chart with Table View */}
+      <ChartWithTable
+        title="Data Distribution"
+        data={mockPieChartData}
+        tableHeaders={[
+          { key: 'name', label: 'Group' },
+          { key: 'value', label: 'Value' },
+        ]}
+      >
+        <PieChart data={mockPieChartData} dataKey="value" nameKey="name" />
+      </ChartWithTable>
     </div>
   );
 };

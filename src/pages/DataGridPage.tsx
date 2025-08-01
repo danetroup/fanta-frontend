@@ -1,7 +1,5 @@
-// src/pages/DataGridPage.tsx
 import React, { useState, useMemo, useCallback } from 'react';
-// Correct AG Grid type imports - all with 'type' keyword
-import { type ColDef, type ICellRendererParams, type IRowNode } from 'ag-grid-community'; // <--- ADD THIS IMPORT
+import { type ColDef, type ICellRendererParams, type IRowNode } from 'ag-grid-community';
 
 import DataTable from '../components/data/DataTable';
 import useDataFetch from '../hooks/useDataFetch';
@@ -9,6 +7,7 @@ import { mockTableData } from '../data/mockData';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import Card from '../components/ui/Card';
+import PageHeader from '../components/templates/PageHeader'; // <-- Import PageHeader
 
 // Custom Cell Renderer Example
 const ElectricCarRenderer: React.FC<ICellRendererParams> = (props) => {
@@ -20,7 +19,7 @@ const ElectricCarRenderer: React.FC<ICellRendererParams> = (props) => {
 const DataGridPage: React.FC = () => {
   const { data: fetchedTableData, loading: tableLoading, error: tableError, fetchData } = useDataFetch(null, mockTableData);
   const [filterText, setFilterText] = useState<string>('');
-  const [gridApi, setGridApi] = useState<any>(null); // State to hold the grid API
+  const [gridApi, setGridApi] = useState<any>(null);
 
   const onGridReady = useCallback((params: any) => {
     setGridApi(params.api);
@@ -39,8 +38,8 @@ const DataGridPage: React.FC = () => {
       sortable: true,
       filter: true,
       floatingFilter: true,
-      checkboxSelection: true, // Example: Add checkbox selection
-      headerCheckboxSelection: true, // Example: Add header checkbox for all
+      checkboxSelection: true,
+      headerCheckboxSelection: true,
       minWidth: 150,
     },
     {
@@ -55,7 +54,7 @@ const DataGridPage: React.FC = () => {
       field: 'price',
       headerName: 'Price ($)',
       sortable: true,
-      filter: 'agNumberColumnFilter', // Specific filter type
+      filter: 'agNumberColumnFilter',
       floatingFilter: true,
       valueFormatter: p => '$' + p.value.toLocaleString(),
       minWidth: 120,
@@ -64,22 +63,21 @@ const DataGridPage: React.FC = () => {
       field: 'electric',
       headerName: 'Type',
       sortable: true,
-      filter: 'agSetColumnFilter', // Set filter for boolean
+      filter: 'agSetColumnFilter',
       floatingFilter: true,
-      cellRenderer: ElectricCarRenderer, // Use custom renderer
+      cellRenderer: ElectricCarRenderer,
       minWidth: 120,
     },
   ], []);
 
-  // AG Grid Options - more advanced configurations
   const gridOptions = useMemo(() => ({
-    rowSelection: 'multiple' as 'multiple', // Enable multiple row selection
-    animateRows: true, // Animate row changes
-    pagination: true, // Enable pagination
-    paginationPageSize: 5, // Set page size
-    suppressCellFocus: true, // Prevent cells from gaining focus (good for overall UX)
-    onFirstDataRendered: (params: any) => params.api.sizeColumnsToFit(), // Auto-size columns on first load
-    onGridReady: onGridReady, // Set grid API on ready
+    rowSelection: 'multiple' as 'multiple',
+    animateRows: true,
+    pagination: true,
+    paginationPageSize: 5,
+    suppressCellFocus: true,
+    onFirstDataRendered: (params: any) => params.api.sizeColumnsToFit(),
+    onGridReady: onGridReady,
   }), [onGridReady]);
 
   const getSelectedRows = useCallback(() => {
@@ -92,7 +90,10 @@ const DataGridPage: React.FC = () => {
 
   return (
     <div className="p-8 space-y-8">
-      <h1 className="text-4xl font-bold text-text mb-6">Data Grid Showcase</h1>
+      <PageHeader
+        title="Data Grid Showcase"
+        description="An advanced example of the AG Grid component with filtering and selection."
+      />
 
       <Card className="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Advanced AG Grid Example</h3>
@@ -119,8 +120,8 @@ const DataGridPage: React.FC = () => {
           <DataTable
             rowData={fetchedTableData}
             columnDefs={columnDefs}
-            height="500px" // Increased height for more data
-            gridOptions={gridOptions} // Pass advanced grid options
+            height="500px"
+            gridOptions={gridOptions}
           />
         )}
       </Card>

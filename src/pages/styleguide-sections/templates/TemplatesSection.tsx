@@ -17,7 +17,7 @@ import ActionBar from '../../../components/templates/ActionBar';
  */
 const TemplatesSection: React.FC = () => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold text-text">Page & Layout Templates</h2>
       <p className="text-text-light">
         Combine these high-level components to quickly build consistent and professional page layouts. These templates demonstrate common patterns for forms, detail pages, and more.

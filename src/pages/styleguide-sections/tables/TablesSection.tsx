@@ -1,49 +1,66 @@
-// src/pages/styleguide-sections/tables/TablesSection.tsx
-import React, { useState, useMemo, useCallback } from 'react';
-import Card from '../../../components/ui/Card'; // Re-use Card for container
-import Input from '../../../components/ui/Input'; // <--- ADD THIS IMPORT
-import Button from '../../../components/ui/Button'; // Re-use Button for pagination actions
-import Table from '../../../components/data/Table'; // Import Simple HTML Table
-import Pagination from '../../../components/ui/Pagination'; // Import Pagination
-import DataTable from '../../../components/data/DataTable'; // Import AG Grid DataTable
-import useDataFetch from '../../../hooks/useDataFetch'; // For DataTable data
-import { mockTableData } from '../../../data/mockData'; // For DataTable data and Simple Table data
-import { type ColDef, type ICellRendererParams, type IRowNode, ModuleRegistry, ClientSideRowModelModule } from 'ag-grid-community'; // <--- ADD 'type' keyword for IRowNode
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import Card from '../../../components/ui/Card';
+import Input from '../../../components/ui/Input';
+import Button from '../../../components/ui/Button';
+import Select from '../../../components/ui/Select';
+import Table from '../../../components/data/Table';
+import Pagination from '../../../components/ui/Pagination';
+import DataTable from '../../../components/data/DataTable';
+import Badge from '../../../components/ui/Badge';
+import useDataFetch from '../../../hooks/useDataFetch';
+import { mockTableData, mockLargeTableData } from '../../../data/mockData';
+// Import necessary AG Grid modules
+import {
+  type ColDef,
+  type ICellRendererParams,
+  type IRowNode,
+  ModuleRegistry,
+  ClientSideRowModelModule
+} from 'ag-grid-community';
 
-// Register the required AG Grid modules here, as this section uses DataTable
-ModuleRegistry.registerModules([ClientSideRowModelModule]);
+// Register the required AG Grid modules
+ModuleRegistry.registerModules([
+  ClientSideRowModelModule,
+]);
 
-// Custom Cell Renderer Example for AG Grid (copied from DataGridPage.tsx)
 const ElectricCarRenderer: React.FC<ICellRendererParams> = (props) => {
-  return (
-    <span>{props.value ? '⚡ Electric' : '⛽ Gasoline'}</span>
-  );
+  return <span>{props.value ? '⚡ Electric' : '⛽ Gasoline'}</span>;
+};
+
+const StatusCell: React.FC<{ value: string }> = ({ value }) => {
+  const variant = {
+    Active: 'success' as const,
+    Inactive: 'danger' as const,
+    Pending: 'warning' as const,
+  }[value] || 'secondary';
+  return <Badge variant={variant}>{value}</Badge>;
+};
+
+const EmailCell: React.FC<{ value: string }> = ({ value }) => {
+  return <a href={`mailto:${value}`} className="text-primary hover:underline">{value}</a>;
 };
 
 const TablesSection: React.FC = () => {
-  // Simple Table Data (copied from Styleguide.tsx)
+  // --- States for Simple Paginated Table ---
+  const [simpleTablePage, setSimpleTablePage] = useState(1);
+  const ITEMS_PER_PAGE = 5;
   const simpleTableHeaders = [
+    { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
-    { key: 'age', label: 'Age' },
-    { key: 'city', label: 'City' },
+    { key: 'email', label: 'Email', render: (value: string) => <EmailCell value={value} /> },
+    { key: 'status', label: 'Status', render: (value: string) => <StatusCell value={value} /> },
   ];
-  const simpleTableData = [
-    { name: 'Alice', age: 30, city: 'New York' },
-    { name: 'Bob', age: 24, city: 'London' },
-    { name: 'Charlie', age: 35, city: 'Paris' },
-    { name: 'Diana', age: 28, city: 'Berlin' },
-  ];
-  const emptyTableData: Record<string, any>[] = [];
+  const paginatedData = useMemo(() => {
+    const start = (simpleTablePage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    return mockLargeTableData.slice(start, end);
+  }, [simpleTablePage]);
+  const totalSimplePages = Math.ceil(mockLargeTableData.length / ITEMS_PER_PAGE);
 
-  // Pagination states (copied from Styleguide.tsx)
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
-  const totalPagesSmall = 3; // Example small total pages
-
-  // AG Grid DataTable states and logic (copied from DataGridPage.tsx)
+  // --- States for AG Grid DataTable ---
   const { data: fetchedTableData, loading: tableLoading, error: tableError, fetchData } = useDataFetch(null, mockTableData);
-  const [filterText, setFilterText] = useState<string>(''); // For quick filter
-  const [gridApi, setGridApi] = useState<any>(null); // State to hold the grid API
+  const [filterText, setFilterText] = useState<string>('');
+  const [gridApi, setGridApi] = useState<any>(null);
 
   const onGridReady = useCallback((params: any) => {
     setGridApi(params.api);
@@ -56,53 +73,26 @@ const TablesSection: React.FC = () => {
   }, [filterText, gridApi]);
 
   const columnDefs: ColDef[] = useMemo(() => [
-    {
-      field: 'make',
-      headerName: 'Manufacturer',
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      checkboxSelection: true,
-      headerCheckboxSelection: true,
-      minWidth: 150,
-    },
-    {
-      field: 'model',
-      headerName: 'Model Name',
-      sortable: true,
-      filter: true,
-      floatingFilter: true,
-      minWidth: 150,
-    },
-    {
-      field: 'price',
-      headerName: 'Price ($)',
-      sortable: true,
-      filter: 'agNumberColumnFilter',
-      floatingFilter: true,
-      valueFormatter: p => '$' + p.value.toLocaleString(),
-      minWidth: 120,
-    },
-    {
-      field: 'electric',
-      headerName: 'Type',
-      sortable: true,
-      filter: 'agSetColumnFilter',
-      floatingFilter: true,
-      cellRenderer: ElectricCarRenderer,
-      minWidth: 120,
-    },
+    { field: 'make', headerName: 'Manufacturer', sortable: true, filter: true, floatingFilter: true, checkboxSelection: true, headerCheckboxSelection: true, minWidth: 150 },
+    { field: 'model', headerName: 'Model Name', sortable: true, filter: true, floatingFilter: true, minWidth: 150 },
+    { field: 'price', headerName: 'Price ($)', sortable: true, filter: 'agNumberColumnFilter', floatingFilter: true, valueFormatter: p => '$' + p.value.toLocaleString(), minWidth: 120 },
+    { field: 'electric', headerName: 'Type', sortable: true, filter: true, floatingFilter: true, cellRenderer: ElectricCarRenderer, minWidth: 120 },
   ], []);
+
+  const defaultColDef: ColDef = useMemo(() => ({
+    resizable: true,
+  }), []);
 
   const gridOptions = useMemo(() => ({
     rowSelection: 'multiple' as 'multiple',
     animateRows: true,
     pagination: true,
-    paginationPageSize: 5,
+    paginationPageSize: 10,
     suppressCellFocus: true,
     onFirstDataRendered: (params: any) => params.api.sizeColumnsToFit(),
     onGridReady: onGridReady,
-  }), [onGridReady]);
+    defaultColDef: defaultColDef,
+  }), [onGridReady, defaultColDef]);
 
   const getSelectedRows = useCallback(() => {
     if (gridApi) {
@@ -112,60 +102,35 @@ const TablesSection: React.FC = () => {
     }
   }, [gridApi]);
 
-
   return (
-   <div className="space-y-8 p-6">
+    <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold mb-4 text-text">Tables & Data Grids</h2>
 
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Simple HTML Table</h3>
-      <div className="space-y-4">
-        <Table
-          caption="Sample User Data"
-          headers={simpleTableHeaders}
-          data={simpleTableData}
-        />
-        <h4 className="text-lg font-semibold mt-8 mb-4 text-text">Empty Table Example</h4> {/* Adjusted heading level */}
-        <Table
-          caption="No Data Table"
-          headers={simpleTableHeaders}
-          data={emptyTableData}
-        />
-      </div>
+      <Card padding="p-6">
+        <h3 className="text-2xl font-semibold mb-4 text-text">Simple Paginated Table</h3>
+        <p className="text-text-light mb-4">
+          A basic HTML table with client-side pagination. This example uses custom renderers for the email and status columns.
+        </p>
+        <Table headers={simpleTableHeaders} data={paginatedData} />
+        <div className="mt-4 flex justify-center">
+          <Pagination currentPage={simpleTablePage} totalPages={totalSimplePages} onPageChange={setSimpleTablePage} />
+        </div>
+      </Card>
 
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Pagination</h3>
-      <div className="flex flex-col items-center space-y-4">
-        <h4 className="text-lg font-semibold text-text">Standard Pagination (10 pages, showing 5 buttons)</h4> {/* Adjusted heading level */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          maxPageButtons={5}
-        />
-        <p className="text-text">Current Page: {currentPage}</p>
-
-        <h4 className="text-lg font-semibold mt-8 text-text">Pagination with fewer pages (3 pages)</h4> {/* Adjusted heading level */}
-        <Pagination
-          currentPage={1}
-          totalPages={totalPagesSmall}
-          onPageChange={(page) => alert(`Small table page: ${page}`)}
-          maxPageButtons={5}
-        />
-      </div>
-
-      <h3 className="text-xl font-semibold mt-8 mb-4 text-text">AG Grid Data Table (Advanced)</h3>
-      <div className="space-y-4">
+      <Card padding="p-6">
+        <h3 className="text-2xl font-semibold mb-4 text-text">AG Grid Data Table (Advanced)</h3>
+        <p className="text-text-light mb-4">
+          A powerful data grid with advanced filtering. Use the quick filter for a global search or the inputs below each header for column-specific filtering.
+        </p>
         <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4 mb-6">
           <Input
             type="text"
-            placeholder="Quick Filter..."
+            placeholder="Quick Filter (searches all columns)..."
             value={filterText}
             onChange={(e) => setFilterText(e.target.value)}
             onKeyUp={onFilterTextBoxChanged}
             className="flex-1"
           />
-          <Button onClick={() => fetchData()} variant="secondary">
-            Reload Data
-          </Button>
           <Button onClick={getSelectedRows} variant="primary">
             Get Selected Rows
           </Button>
@@ -181,7 +146,7 @@ const TablesSection: React.FC = () => {
             gridOptions={gridOptions}
           />
         )}
-      </div>
+      </Card>
     </div>
   );
 };

@@ -1,31 +1,55 @@
-// src/components/ui/Pagination.tsx
 import React, { useCallback, useMemo } from 'react';
-import Button from './Button'; // Re-use our Button component
+import Button from './Button';
+import Icon from './Icon';
 
 interface PaginationProps {
+  /** The currently active page number. */
   currentPage: number;
+  /** The total number of pages available. */
   totalPages: number;
+  /** Callback function invoked when the page is changed. */
   onPageChange: (page: number) => void;
-  maxPageButtons?: number; // Maximum number of page buttons to display
+  /** The maximum number of page buttons to display. */
+  maxPageButtons?: number;
+  /** Optional additional CSS classes for the container. */
+  className?: string;
 }
 
+/**
+ * A component for navigating through paginated content. It provides controls
+ * for moving to the next, previous, or a specific page number.
+ */
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
   onPageChange,
-  maxPageButtons = 5, // Default to 5 visible page buttons
+  maxPageButtons = 5,
+  className,
 }) => {
   const getPageNumbers = useMemo(() => {
     const pages: (number | '...')[] = [];
-    const delta = Math.floor(maxPageButtons / 2); // Half of visible buttons on each side of current page
+    if (totalPages <= maxPageButtons) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+      return pages;
+    }
 
-    let startPage = Math.max(1, currentPage - delta);
-    let endPage = Math.min(totalPages, currentPage + delta);
+    const half = Math.floor(maxPageButtons / 2);
+    let startPage = Math.max(1, currentPage - half);
+    let endPage = Math.min(totalPages, currentPage + half);
+
+    if (currentPage - half <= 1) {
+      endPage = maxPageButtons;
+    }
+    if (currentPage + half >= totalPages) {
+      startPage = totalPages - maxPageButtons + 1;
+    }
 
     if (startPage > 1) {
       pages.push(1);
       if (startPage > 2) {
-        pages.push('...'); // Ellipsis for beginning
+        pages.push('...');
       }
     }
 
@@ -35,7 +59,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
     if (endPage < totalPages) {
       if (endPage < totalPages - 1) {
-        pages.push('...'); // Ellipsis for end
+        pages.push('...');
       }
       pages.push(totalPages);
     }
@@ -43,54 +67,60 @@ const Pagination: React.FC<PaginationProps> = ({
     return pages;
   }, [currentPage, totalPages, maxPageButtons]);
 
-  const handlePageClick = useCallback((page: number | '...') => {
-    if (typeof page === 'number') {
-      onPageChange(page);
-    }
+  const handlePageClick = useCallback((page: number) => {
+    onPageChange(page);
   }, [onPageChange]);
 
   const handlePrevClick = useCallback(() => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-    }
+    onPageChange(currentPage - 1);
   }, [currentPage, onPageChange]);
 
   const handleNextClick = useCallback(() => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-    }
-  }, [currentPage, totalPages, onPageChange]);
+    onPageChange(currentPage + 1);
+  }, [currentPage, onPageChange]);
 
   if (totalPages <= 1) {
-    return null; // Don't render pagination if only one or no pages
+    return null;
   }
 
   return (
-    <nav className="flex justify-center items-center space-x-2 p-4">
+    <nav className={`flex items-center justify-center gap-2 ${className || ''}`} aria-label="Pagination">
       <Button
         variant="outline"
         size="sm"
         onClick={handlePrevClick}
         disabled={currentPage === 1}
+        iconBefore={<Icon name="chevron-left" size={16} />}
       >
         Previous
       </Button>
-      {getPageNumbers.map((page, index) => (
-        <Button
-          key={index} // Use index as key for '...' to avoid duplicate keys, typically not ideal but acceptable for simple pagination
-          variant={page === currentPage ? 'primary' : 'outline'}
-          size="sm"
-          onClick={() => handlePageClick(page)}
-          disabled={page === '...'}
-        >
-          {page}
-        </Button>
-      ))}
+
+      <div className="flex items-center gap-1">
+        {getPageNumbers.map((page, index) =>
+          typeof page === 'number' ? (
+            <Button
+              key={page}
+              variant={currentPage === page ? 'primary' : 'ghost'}
+              size="sm"
+              onClick={() => handlePageClick(page)}
+              className="w-10"
+            >
+              {page}
+            </Button>
+          ) : (
+            <span key={`ellipsis-${index}`} className="px-2 py-1 text-sm text-text-light">
+              ...
+            </span>
+          )
+        )}
+      </div>
+
       <Button
         variant="outline"
         size="sm"
         onClick={handleNextClick}
         disabled={currentPage === totalPages}
+        iconAfter={<Icon name="chevron-right" size={16} />}
       >
         Next
       </Button>

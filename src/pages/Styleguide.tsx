@@ -10,13 +10,17 @@ import ChartsSection from './styleguide-sections/charts/ChartsSection';
 import UtilitiesSection from './styleguide-sections/utilities/UtilitiesSection';
 import IconsSection from './styleguide-sections/icons/IconsSection';
 import TemplatesSection from './styleguide-sections/templates/TemplatesSection';
-import ElementsSection from './styleguide-sections/elements/ElementsSection'; // <-- Import the new section
+import ElementsSection from './styleguide-sections/elements/ElementsSection';
 import { Tabs, TabPanel } from '../components/ui/Tabs';
+import PageHeader from '../components/templates/PageHeader'; // <-- Import PageHeader
 
 const Styleguide: React.FC = () => {
   return (
     <div className="p-8 space-y-8"> 
-      <h1 className="text-4xl font-bold text-text mb-6">Style Guide & Component Showcase</h1>
+      <PageHeader
+        title="Style Guide & Component Showcase"
+        description="An interactive playground for all UI components, patterns, and styles available in the Fanta Frontend boilerplate."
+      />
 
       <Tabs defaultActiveTab="layout-section">
         <TabPanel id="layout-section" label="Layout">

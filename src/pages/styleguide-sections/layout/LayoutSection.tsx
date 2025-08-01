@@ -155,9 +155,9 @@ const LayoutSection: React.FC = () => {
           <Button onClick={() => setIsTopDrawerOpen(true)} variant="accent">Open Top Drawer</Button>
           <Button onClick={() => setIsBottomDrawerOpen(true)} variant="danger">Open Bottom Drawer</Button>
         </div>
-        <Drawer isOpen={isRightDrawerOpen} onClose={() => setIsRightDrawerOpen(false)} position="right" size="300px" title="Right-Side Drawer"><p className="text-text">This drawer slides in from the right.</p><Input type="text" placeholder="Drawer input" className="mt-4" /><Button variant="primary" className="mt-4">Action</Button></Drawer>
-        <Drawer isOpen={isLeftDrawerOpen} onClose={() => setIsLeftDrawerOpen(false)} position="left" size="25%" title="Left-Side Drawer (25%)"><p className="text-text">This drawer slides in from the left and has a responsive width.</p><p className="text-text mt-2">Try resizing your browser!</p></Drawer>
-        <Drawer isOpen={isTopDrawerOpen} onClose={() => setIsTopDrawerOpen(false)} position="top" size="150px" title="Top Drawer"><p className="text-text">This short drawer slides down from the top.</p></Drawer>
+        <Drawer isOpen={isRightDrawerOpen} onClose={() => setIsRightDrawerOpen(false)} position="right" size="600px" title="Right-Side Drawer"><p className="text-text">This drawer slides in from the right.</p><Input type="text" placeholder="Drawer input" className="mt-4" /><Button variant="primary" className="mt-4">Action</Button></Drawer>
+        <Drawer isOpen={isLeftDrawerOpen} onClose={() => setIsLeftDrawerOpen(false)} position="left" size="50%" title="Left-Side Drawer (25%)"><p className="text-text">This drawer slides in from the left and has a responsive width.</p><p className="text-text mt-2">Try resizing your browser!</p></Drawer>
+        <Drawer isOpen={isTopDrawerOpen} onClose={() => setIsTopDrawerOpen(false)} position="top" size="400px" title="Top Drawer"><p className="text-text">This short drawer slides down from the top.</p></Drawer>
         <Drawer isOpen={isBottomDrawerOpen} onClose={() => setIsBottomDrawerOpen(false)} position="bottom" size="50%" title="Bottom Drawer (50%)"><p className="text-text">This drawer slides up from the bottom.</p><div className="h-20 bg-primary/20 mt-4 rounded p-2 text-sm text-primary">Scrollable content example.</div></Drawer>
       </Card>
 

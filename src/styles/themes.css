@@ -4,6 +4,11 @@
 
 /* Light Theme (Default for the system if no dark preference) */
 .light {
+  /* Font Variables */
+  --app-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --app-font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+
+  /* Color Variables */
   --app-primary-color: rgb(37, 99, 235);
   --app-secondary-color: rgb(249, 115, 22);
   --app-accent-color: rgb(102, 126, 234);
@@ -11,7 +16,7 @@
   --app-bg-color: rgb(243, 244, 246);
   --app-card-bg-color: rgb(255, 255, 255);
   --app-border-color: rgb(229, 231, 235);
-  --app-bg-color-hover: rgb(230, 230, 230); /* Re-added hover color */
+  --app-bg-color-hover: rgb(230, 230, 230);
 
   /* Raw RGB values for RGBA calculations in Sass/CSS */
   --app-primary-color-raw: 37, 99, 235;
@@ -21,6 +26,11 @@
 
 /* Dark Theme */
 .dark {
+  /* Font Variables */
+  --app-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --app-font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+
+  /* Color Variables */
   --app-primary-color: rgb(96, 165, 250);
   --app-secondary-color: rgb(251, 146, 60);
   --app-accent-color: rgb(129, 140, 248);
@@ -28,7 +38,7 @@
   --app-bg-color: rgb(17, 24, 39);
   --app-card-bg-color: rgb(31, 41, 55);
   --app-border-color: rgb(55, 65, 81);
-  --app-bg-color-hover: rgb(30, 40, 60); /* Re-added hover color */
+  --app-bg-color-hover: rgb(30, 40, 60);
 
   /* Raw RGB values for RGBA calculations in Sass/CSS */
   --app-primary-color-raw: 96, 165, 250;
@@ -38,6 +48,11 @@
 
 /* Corporate Theme */
 .corporate {
+  /* Font Variables */
+  --app-font-sans: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --app-font-serif: 'Merriweather', Georgia, Cambria, 'Times New Roman', Times, serif;
+  
+  /* Color Variables */
   --app-primary-color: rgb(16, 185, 129);
   --app-secondary-color: rgb(252, 211, 77);
   --app-accent-color: rgb(110, 231, 183);
@@ -45,7 +60,7 @@
   --app-bg-color: rgb(249, 250, 251);
   --app-card-bg-color: rgb(255, 255, 255);
   --app-border-color: rgb(209, 213, 219);
-  --app-bg-color-hover: rgb(240, 240, 240); /* Re-added hover color */
+  --app-bg-color-hover: rgb(240, 240, 240);
 
   /* Raw RGB values for RGBA calculations in Sass/CSS */
   --app-primary-color-raw: 16, 185, 129;
@@ -55,6 +70,11 @@
 
 /* Midnight Theme */
 .midnight {
+  /* Font Variables */
+  --app-font-sans: 'Roboto Mono', monospace;
+  --app-font-serif: 'Lora', serif;
+
+  /* Color Variables */
   --app-primary-color: rgb(129, 140, 248);
   --app-secondary-color: rgb(192, 132, 252);
   --app-accent-color: rgb(99, 102, 241);
@@ -62,7 +82,7 @@
   --app-bg-color: rgb(15, 23, 42);
   --app-card-bg-color: rgb(30, 41, 59);
   --app-border-color: rgb(71, 85, 105);
-  --app-bg-color-hover: rgb(25, 35, 55); /* Re-added hover color */
+  --app-bg-color-hover: rgb(25, 35, 55);
 
   /* Raw RGB values for RGBA calculations in Sass/CSS */
   --app-primary-color-raw: 129, 140, 248;
@@ -70,10 +90,30 @@
   --app-bg-color-raw: 15, 23, 42;
 }
 
-/*
-* AG Grid Theme Overrides - Apply these inside the .ag-theme-quartz class
-* This ensures higher specificity when a theme class is active on HTML.
-*/
+/* Blueprint Theme */
+.blueprint {
+  /* Font Variables */
+  --app-font-sans: 'Courier New', Courier, monospace;
+  --app-font-serif: 'Times New Roman', Times, serif;
+
+  /* Color Variables */
+  --app-primary-color: rgb(51, 51, 51); /* White for primary actions/buttons */
+  --app-secondary-color: rgb(125, 125, 125); /* Light grey for secondary elements */
+  --app-accent-color: rgb(0, 0, 0);
+  --app-text-color: rgb(0, 0, 0);
+  --app-bg-color: rgb(255, 255, 255); /* The main blue background */
+  --app-card-bg-color: rgb(255, 255, 255); /* Semi-transparent darker blue */
+  --app-border-color: rgb(194, 194, 194); /* Semi-transparent white */
+  --app-bg-color-hover: rgb(166, 166, 166);
+
+  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  --app-primary-color-raw: 51, 51, 51;
+  --app-text-color-raw: 0, 0, 0;
+  --app-bg-color-raw: 255, 255, 255;
+}
+
+
+/* --- AG Grid Theme Overrides --- */
 
 html.light .ag-theme-quartz {
   --ag-foreground-color: rgb(31, 41, 55);
@@ -86,9 +126,6 @@ html.light .ag-theme-quartz {
   --ag-selected-row-background-color: rgb(209, 226, 250);
   --ag-active-color: rgb(37, 99, 235);
   --ag-range-selection-background-color: rgba(37, 99, 235, 0.2);
-  --ag-range-selection-background-color-2: rgba(37, 99, 235, 0.25);
-  --ag-range-selection-background-color-3: rgba(37, 99, 235, 0.3);
-  --ag-range-selection-background-color-4: rgba(37, 99, 235, 0.35);
 }
 
 html.dark .ag-theme-quartz {
@@ -102,9 +139,6 @@ html.dark .ag-theme-quartz {
   --ag-selected-row-background-color: rgb(59, 130, 246);
   --ag-active-color: rgb(96, 165, 250);
   --ag-range-selection-background-color: rgba(96, 165, 250, 0.2);
-  --ag-range-selection-background-color-2: rgba(96, 165, 250, 0.25);
-  --ag-range-selection-background-color-3: rgba(96, 165, 250, 0.3);
-  --ag-range-selection-background-color-4: rgba(96, 165, 250, 0.35);
 }
 
 html.corporate .ag-theme-quartz {
@@ -118,9 +152,6 @@ html.corporate .ag-theme-quartz {
   --ag-selected-row-background-color: rgb(167, 243, 208);
   --ag-active-color: rgb(16, 185, 129);
   --ag-range-selection-background-color: rgba(16, 185, 129, 0.2);
-  --ag-range-selection-background-color-2: rgba(16, 185, 129, 0.25);
-  --ag-range-selection-background-color-3: rgba(16, 185, 129, 0.3);
-  --ag-range-selection-background-color-4: rgba(16, 185, 129, 0.35);
 }
 
 html.midnight .ag-theme-quartz {
@@ -134,7 +165,17 @@ html.midnight .ag-theme-quartz {
   --ag-selected-row-background-color: rgb(79, 70, 229);
   --ag-active-color: rgb(129, 140, 248);
   --ag-range-selection-background-color: rgba(129, 140, 248, 0.2);
-  --ag-range-selection-background-color-2: rgba(129, 140, 248, 0.25);
-  --ag-range-selection-background-color-3: rgba(129, 140, 248, 0.3);
-  --ag-range-selection-background-color-4: rgba(129, 140, 248, 0.35);
+}
+
+html.blueprint .ag-theme-quartz {
+  --ag-foreground-color: rgb(0, 0, 0);
+  --ag-background-color: rgb(255, 255, 255);
+  --ag-header-background-color: rgb(223, 223, 223);
+  --ag-odd-row-background-color: rgb(240, 240, 240);
+  --ag-even-row-background-color: rgb(255, 255, 255);
+  --ag-border-color: rgba(0, 0, 0, 0);
+  --ag-row-hover-color: rgb(223, 239, 248);
+  --ag-selected-row-background-color: rgb(185, 227, 255);
+  --ag-active-color: rgb(250, 180, 180);
+  --ag-range-selection-background-color: rgb(139, 255, 209);
 }

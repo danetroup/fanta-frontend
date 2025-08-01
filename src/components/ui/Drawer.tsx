@@ -1,13 +1,13 @@
-// src/components/ui/Drawer.tsx
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import Icon from './Icon';
 
 interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
   position?: 'left' | 'right' | 'top' | 'bottom';
-  size?: string;
+  size?: string; // e.g., '50%', '600px'
   title?: string;
   className?: string;
   overlayDismiss?: boolean;
@@ -27,63 +27,54 @@ const Drawer: React.FC<DrawerProps> = ({
   const [transitionedIn, setTransitionedIn] = useState(false);
   const drawerContentRef = useRef<HTMLDivElement>(null);
 
+  // This function now only returns classes for positioning and transitions.
+  // Size is handled separately via inline styles for reliability.
   const getTransitionClasses = useCallback(() => {
     switch (position) {
       case 'left':
-        return {
-          from: '-translate-x-full',
-          to: 'translate-x-0',
-          sizeClass: size.startsWith('w-') ? size : `w-[${size}]`,
-          positionClass: 'left-0 top-0 h-full',
-        };
+        return { from: '-translate-x-full', to: 'translate-x-0', positionClass: 'left-0 top-0 h-full' };
       case 'right':
-        return {
-          from: 'translate-x-full',
-          to: 'translate-x-0',
-          sizeClass: size.startsWith('w-') ? size : `w-[${size}]`,
-          positionClass: 'right-0 top-0 h-full',
-        };
+        return { from: 'translate-x-full', to: 'translate-x-0', positionClass: 'right-0 top-0 h-full' };
       case 'top':
-        return {
-          from: '-translate-y-full',
-          to: 'translate-y-0',
-          sizeClass: size.startsWith('h-') ? size : `h-[${size}]`,
-          positionClass: 'left-0 top-0 w-full',
-        };
+        return { from: '-translate-y-full', to: 'translate-y-0', positionClass: 'left-0 top-0 w-full' };
       case 'bottom':
-        return {
-          from: 'translate-y-full',
-          to: 'translate-y-0',
-          sizeClass: size.startsWith('h-') ? size : `h-[${size}]`,
-          positionClass: 'left-0 bottom-0 w-full',
-        };
+        return { from: 'translate-y-full', to: 'translate-y-0', positionClass: 'left-0 bottom-0 w-full' };
       default:
-        return {
-          from: 'translate-x-full',
-          to: 'translate-x-0',
-          sizeClass: size.startsWith('w-') ? size : `w-[${size}]`,
-          positionClass: 'right-0 top-0 h-full',
-        };
+        return { from: 'translate-x-full', to: 'translate-x-0', positionClass: 'right-0 top-0 h-full' };
     }
+  }, [position]);
+
+  // This function generates the inline style object for the drawer's size.
+  const getDrawerStyles = useCallback((): React.CSSProperties => {
+    const style: React.CSSProperties = {};
+    if (position === 'left' || position === 'right') {
+      style.width = size;
+      style.maxWidth = '100vw'; // Ensure it doesn't exceed viewport width
+    } else {
+      style.height = size;
+      style.maxHeight = '100vh'; // Ensure it doesn't exceed viewport height
+    }
+    return style;
   }, [position, size]);
 
-  const { from, to, sizeClass, positionClass } = getTransitionClasses();
+  const { from, to, positionClass } = getTransitionClasses();
+  const drawerStyles = getDrawerStyles();
 
-  // Manage mounting/unmounting and initial transition for opening
+  // Manage mounting/unmounting and transitions
   useEffect(() => {
     let animationFrame: number;
-    let timer: number; // <--- CHANGED FROM NodeJS.Timeout to number
+    let timer: number;
 
     if (isOpen) {
       setShouldRender(true);
       animationFrame = requestAnimationFrame(() => {
-        timer = setTimeout(() => {
+        timer = window.setTimeout(() => {
           setTransitionedIn(true);
-        }, 0);
+        }, 10);
       });
     } else {
       setTransitionedIn(false);
-      timer = setTimeout(() => setShouldRender(false), 500);
+      timer = window.setTimeout(() => setShouldRender(false), 500); // Match transition duration
     }
 
     return () => {
@@ -128,26 +119,27 @@ const Drawer: React.FC<DrawerProps> = ({
     >
       <div
         ref={drawerContentRef}
-        className={`fixed bg-card border border-border text-text shadow-xl
-          ${positionClass} ${sizeClass}
+        style={drawerStyles} // Apply the size using an inline style
+        className={`fixed bg-card border border-border text-text shadow-xl flex flex-col
+          ${positionClass}
           transform transition-transform duration-500 ease-out
           ${transitionedIn ? to : from}
           ${className || ''}`}
       >
         {/* Drawer Header */}
-        <div className="flex justify-between items-center p-4 border-b border-border">
+        <div className="flex justify-between items-center p-4 border-b border-border flex-shrink-0">
           {title && <h3 className="text-xl font-semibold">{title}</h3>}
           <button
             onClick={onClose}
-            className="text-text hover:text-gray-500 transition-colors"
+            className="text-text-light hover:text-text transition-colors"
             aria-label="Close drawer"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <Icon name="x" size={24} />
           </button>
         </div>
 
         {/* Drawer Body */}
-        <div className="p-4 flex-1 overflow-y-auto">
+        <div className="flex-grow p-4 overflow-y-auto">
           {children}
         </div>
       </div>

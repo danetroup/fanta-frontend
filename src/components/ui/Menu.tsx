@@ -1,4 +1,3 @@
-// src/components/ui/Menu.tsx
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 interface MenuItemProps {
@@ -8,7 +7,8 @@ interface MenuItemProps {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ children, onClick, disabled }) => {
-  const baseStyles = 'block w-full text-left px-4 py-2 text-sm cursor-pointer transition-colors duration-150 ease-in-out';
+  // Added flex, items-center, and whitespace-nowrap to ensure proper alignment and prevent text wrapping.
+  const baseStyles = 'flex items-center w-full text-left px-4 py-2 text-sm cursor-pointer transition-colors duration-150 ease-in-out whitespace-nowrap';
   const themeStyles = 'hover:bg-primary/10 text-text';
   const disabledStyles = 'opacity-50 cursor-not-allowed';
 
@@ -77,7 +77,8 @@ const Menu: React.FC<MenuProps> = ({ trigger, children, position = 'bottom-right
 
       {isOpen && (
         <div
-          className={`origin-top-right absolute z-50 rounded-md shadow-lg bg-card border border-border ring-1 ring-black ring-opacity-5 focus:outline-none ${getPositionClasses()}`}
+          // Added min-w-[12rem] for a comfortable minimum width and w-max to fit content.
+          className={`origin-top-right absolute z-50 rounded-md shadow-lg bg-card border border-border ring-1 ring-black ring-opacity-5 focus:outline-none min-w-[12rem] w-max ${getPositionClasses()}`}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

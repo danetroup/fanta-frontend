@@ -1,8 +1,9 @@
-// src/layouts/DefaultLayout.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme, type ThemeName } from '../contexts';
-import Select from '../components/ui/Select'; // <--- IMPORT OUR CUSTOM SELECT
+import { Menu, MenuItem } from '../components/ui/Menu'; // <-- Import Menu components
+import Button from '../components/ui/Button';           // <-- Import Button
+import Icon from '../components/ui/Icon';             // <-- Import Icon
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
@@ -11,11 +12,8 @@ interface DefaultLayoutProps {
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   const { theme, availableThemes, setTheme } = useTheme();
 
-  // Options for the theme switcher Select component
-  const themeSelectOptions = availableThemes.map(t => ({
-    value: t,
-    label: t.charAt(0).toUpperCase() + t.slice(1) + ' Mode',
-  }));
+  // Helper to format theme names for display
+  const formatThemeName = (t: ThemeName) => t.charAt(0).toUpperCase() + t.slice(1);
 
   return (
     <div className="min-h-screen w-full flex flex-col bg-background text-text">
@@ -39,16 +37,22 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
             Libraries
           </Link>
           <div className="flex items-center space-x-2 ml-4">
-            {/* Replaced native select with our custom Select component */}
-            
-            <Select
-              id="theme-select"
-              options={themeSelectOptions}
-              value={theme}
-              onChange={(e) => setTheme(e.target.value as ThemeName)}
-              className="w-36" // Give it a fixed width so it doesn't jump
-              // The Select component itself applies the px-3 py-1 rounded-md bg-secondary text-white text-sm focus:outline-none focus:ring-2 focus:ring-accent
-            />
+            {/* Replaced Select with a Menu for a cleaner UI */}
+            <Menu
+              trigger={
+                <Button variant="secondary" size="sm" iconAfter={<Icon name="chevron-down" size={16} />}>
+                  {formatThemeName(theme)}
+                </Button>
+              }
+              position="bottom-right"
+            >
+              {availableThemes.map((t) => (
+                <MenuItem key={t} onClick={() => setTheme(t)}>
+                  <Icon name={theme === t ? 'check-circle' : 'circle'} size={16} className="mr-2" />
+                  {formatThemeName(t)}
+                </MenuItem>
+              ))}
+            </Menu>
           </div>
         </nav>
       </header>

@@ -1,21 +1,30 @@
-// src/components/ui/EmptyState.tsx
 import React from 'react';
-import Card from './Card'; // Reuse our Card component
+import Card from './Card';
+import Icon from './Icon'; // Import the Icon component
 
 interface EmptyStateProps {
-  icon?: React.ReactNode; // Optional icon (e.g., SVG, emoji)
+  /** The name of the Lucide icon to display. */
+  icon?: React.ComponentProps<typeof Icon>['name'];
+  /** The main title for the empty state. */
   title: string;
+  /** A longer description of the empty state. */
   description?: string;
-  actionButton?: React.ReactNode; // Optional button (e.g., <Button> component)
-  className?: string; // Additional styling for the outer container
+  /** An optional action button. */
+  actionButton?: React.ReactNode;
+  /** Additional styling for the outer container. */
+  className?: string;
 }
 
+/**
+ * A component for displaying an empty state message. It's used when there is no
+ * data to show, such as in an empty table or after a search with no results.
+ */
 const EmptyState: React.FC<EmptyStateProps> = ({ icon, title, description, actionButton, className }) => {
   return (
     <Card className={`p-8 text-center flex flex-col items-center justify-center space-y-4 ${className || ''}`}>
       {icon && (
-        <div className="text-6xl text-text-light">
-          {icon}
+        <div className="text-text-light/50 mb-4">
+          <Icon name={icon} size={64} strokeWidth={1.5} />
         </div>
       )}
       <h3 className="text-2xl font-semibold text-text">

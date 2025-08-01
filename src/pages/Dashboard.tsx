@@ -1,4 +1,3 @@
-// src/pages/Dashboard.tsx
 import React from 'react';
 import { type ColDef } from 'ag-grid-community';
 
@@ -6,6 +5,8 @@ import DataTable from '../components/data/DataTable';
 import BarChart from '../components/charts/BarChart';
 import LineChart from '../components/charts/LineChart';
 import Card from '../components/ui/Card';
+import PageHeader from '../components/templates/PageHeader'; // <-- Import PageHeader
+import StatCard from '../components/ui/StatCard';         // <-- Import StatCard
 import { mockTableData, mockChartData } from '../data/mockData';
 import useDataFetch from '../hooks/useDataFetch';
 
@@ -22,30 +23,40 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="p-8 space-y-8">
-      <h1 className="text-4xl font-bold text-text mb-6">Dashboard Overview</h1>
+      <PageHeader
+        title="Dashboard Overview"
+        description="A summary of key metrics and recent activity."
+      />
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="p-5">
-          <h3 className="text-xl font-semibold text-text">Total Users</h3>
-          <p className="text-3xl font-bold text-primary mt-2">1,234</p>
-          <p className="text-sm text-text-light mt-1">Up 10% from last month</p>
-        </Card>
-        <Card className="p-5">
-          <h3 className="text-xl font-semibold text-text">Sales Today</h3>
-          <p className="text-3xl font-bold text-secondary mt-2">$5,678</p>
-          <p className="text-sm text-text-light mt-1">Up 5% from yesterday</p>
-        </Card>
-        <Card className="p-5">
-          <h3 className="text-xl font-semibold text-text">New Orders</h3>
-          <p className="text-3xl font-bold text-accent mt-2">89</p>
-          <p className="text-sm text-text-light mt-1">2 new since morning</p>
-        </Card>
-        <Card className="p-5">
-          <h3 className="text-xl font-semibold text-text">Active Projects</h3>
-          <p className="text-3xl font-bold text-primary mt-2">12</p>
-          <p className="text-sm text-text-light mt-1">3 nearing completion</p>
-        </Card>
+        <StatCard
+          title="Total Users"
+          value="1,234"
+          icon="users"
+          changeText="+10% from last month"
+          changeDirection="positive"
+        />
+        <StatCard
+          title="Sales Today"
+          value="$5,678"
+          icon="dollar-sign"
+          changeText="+5% from yesterday"
+          changeDirection="positive"
+        />
+        <StatCard
+          title="New Orders"
+          value="89"
+          icon="shopping-cart"
+          changeText="-2 since last hour"
+          changeDirection="negative"
+        />
+        <StatCard
+          title="Active Projects"
+          value="12"
+          icon="briefcase"
+          footerText="3 nearing completion"
+        />
       </div>
 
       {/* Charts Section */}

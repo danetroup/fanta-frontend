@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import Card from '../../../components/ui/Card';
 import Button from '../../../components/ui/Button';
-import ButtonGroup from '../../../components/ui/ButtonGroup'; // <-- Import ButtonGroup
+import ButtonGroup from '../../../components/ui/ButtonGroup';
 import Input from '../../../components/ui/Input';
+import SearchInput from '../../../components/ui/SearchInput'; // <-- Import new component
 import Select from '../../../components/ui/Select';
 import Checkbox from '../../../components/ui/Checkbox';
 import Radio from '../../../components/ui/Radio';
+import ToggleSwitch from '../../../components/ui/ToggleSwitch';
 import ComboBox from '../../../components/ui/ComboBox';
 import MultiSelect from '../../../components/ui/MultiSelect';
 import DatePicker from '../../../components/ui/DatePicker';
-import FileUpload from '../../../components/forms/FileUpload'; // Note: forms component
-import FormTemplate, { type FormField } from '../../../components/forms/FormTemplate'; // Note: forms component
-import { useToast } from '../../../components/ui/ToastContainer'; // Assuming toasts might be triggered from form interactions
-import { type ToastType } from '../../../components/ui/Toast'; // Assuming toasts might be triggered from form interactions
+import FileUpload from '../../../components/forms/FileUpload';
+import FormTemplate, { type FormField } from '../../../components/forms/FormTemplate';
+import { useToast } from '../../../components/ui/ToastContainer';
+import PageHeader from '../../../components/templates/PageHeader'; // Import PageHeader
+import SectionHeader from '../../../components/templates/SectionHeader'; // Import SectionHeader
+import Icon from '../../../components/ui/Icon'; // Import Icon
 
 // Define the MultiSelectOption type (should match the one in MultiSelect.tsx)
 interface MultiSelectOption {
@@ -20,35 +24,17 @@ interface MultiSelectOption {
   label: string;
 }
 
-// Simple SVG Icons for button examples
-const PlusIcon: React.FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
-  </svg>
-);
-
-const SendIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-    </svg>
-);
-
-const EditIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-        <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
-    </svg>
-);
-
-
 const FormsSection: React.FC = () => {
   const { addToast } = useToast();
 
   // Inputs & Selects states
   const [selectedOption, setSelectedOption] = useState('option1');
   const [isChecked, setIsChecked] = useState(false);
+  const [isToggled, setIsToggled] = useState(true);
   const [selectedRadio, setSelectedRadio] = useState('optionA');
   const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const isError = inputValue.length > 0 && inputValue.length < 5;
 
 
   const selectOptions = [
@@ -128,14 +114,13 @@ const FormsSection: React.FC = () => {
 
   return (
     <div className="space-y-8 p-6">
-      <h2 className="text-3xl font-semibold mb-4 text-text">Form Components</h2>
+      <PageHeader
+        title="Form Components"
+        description="A collection of components for building forms, including inputs, selects, and buttons."
+      />
 
+      <SectionHeader title="Buttons & Button Groups" />
       <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Buttons</h3>
-        <p className="text-text-light mb-6">
-          Includes variants, sizes, disabled states, and support for icons, loading states, and full-width.
-        </p>
-        
         <h4 className="text-lg font-semibold mb-2 text-text">Variants & Sizes</h4>
         <div className="flex flex-wrap items-center gap-4 mb-6">
           <Button variant="primary">Primary</Button>
@@ -160,27 +145,14 @@ const FormsSection: React.FC = () => {
 
         <h4 className="text-lg font-semibold mb-2 text-text">Icons</h4>
         <div className="flex flex-wrap items-center gap-4 mb-6">
-          <Button variant="primary" iconBefore={<PlusIcon />}>Create</Button>
-          <Button variant="outline" iconAfter={<SendIcon />}>Send</Button>
-          <Button variant="secondary" iconBefore={<PlusIcon />} />
+          <Button variant="primary" iconBefore={<Icon name="plus" />}>Create</Button>
+          <Button variant="outline" iconAfter={<Icon name="send" />}>Send</Button>
+          <Button variant="secondary" iconBefore={<Icon name="plus" />} />
         </div>
         
-        <h4 className="text-lg font-semibold mb-2 text-text">Full Width</h4>
-        <div className="space-y-2">
-            <Button variant="primary" fullWidth>Full Width Button</Button>
-            <Button variant="outline" fullWidth>Full Width Outline</Button>
-        </div>
-      </Card>
-
-      {/* NEW Button Group Section */}
-      <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Button Groups</h3>
-        <p className="text-text-light mb-6">
-          Use the `ButtonGroup` component to connect related buttons into a single, seamless group.
-        </p>
+        <h4 className="text-lg font-semibold mb-2 text-text">Button Groups</h4>
         <div className="flex flex-wrap items-center gap-8">
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-text">Primary Group</h4>
             <ButtonGroup>
               <Button variant="primary">Profile</Button>
               <Button variant="primary">Settings</Button>
@@ -188,161 +160,181 @@ const FormsSection: React.FC = () => {
             </ButtonGroup>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-text">Outline Group</h4>
             <ButtonGroup>
               <Button variant="outline">Copy</Button>
               <Button variant="outline">Paste</Button>
             </ButtonGroup>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-2 text-text">Icon Group</h4>
             <ButtonGroup>
-              <Button variant="outline" iconBefore={<PlusIcon />} />
-              <Button variant="outline" iconBefore={<EditIcon />} />
-              <Button variant="outline" iconBefore={<SendIcon />} />
+              <Button variant="outline" iconBefore={<Icon name="plus" />} />
+              <Button variant="outline" iconBefore={<Icon name="edit" />} />
+              <Button variant="outline" iconBefore={<Icon name="send" />} />
             </ButtonGroup>
           </div>
         </div>
       </Card>
 
+      <SectionHeader title="Standard Inputs" />
       <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Inputs</h3>
-        <div className="space-y-4 max-w-md">
-          <Input type="text" placeholder="Standard Input" />
-          <Input type="email" placeholder="Email Input" />
-          <Input type="password" placeholder="Password Input" />
-          <Input type="text" placeholder="Disabled Input" disabled />
-        </div>
-      </Card>
-
-      <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Selects</h3>
-        <div className="space-y-4 max-w-md">
-          <Select
-            label="Choose an option"
-            options={selectOptions}
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
+        <div className="space-y-6 max-w-md">
+          <Input
+            label="Standard Input"
+            type="text"
+            placeholder="Placeholder text..."
           />
-          <Select
-            label="Disabled Select"
-            options={selectOptions}
-            value="option2"
+          <Input
+            label="Required Input"
+            type="text"
+            placeholder="e.g., Your Name"
+            required
+          />
+          <Input
+            label="Optional Input"
+            type="text"
+            placeholder="e.g., Nickname"
+            showOptionalLabel
+          />
+          <Input
+            label="Validation Example"
+            type="text"
+            placeholder="Type here..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            error={isError}
+            helperText={isError ? "Input must be at least 5 characters long." : "This is a hint."}
+            required
+          />
+          <Input
+            label="Disabled Input"
+            type="text"
+            placeholder="Disabled"
             disabled
           />
         </div>
       </Card>
 
+      <SectionHeader title="Standard & Search Inputs" />
       <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Checkboxes</h3>
-        <div className="space-y-4 max-w-md">
-          <Checkbox
-            label="Remember me"
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
+        <div className="space-y-6 max-w-md">
+          <Input
+            label="Standard Input"
+            type="text"
+            placeholder="Placeholder text..."
           />
-          <Checkbox label="Opt-in to newsletter" defaultChecked />
-          <Checkbox label="Disabled checkbox" disabled />
-          <Checkbox label="Disabled & checked" defaultChecked disabled />
+          <Input
+            label="Validation Example"
+            type="text"
+            placeholder="Type here..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            error={isError}
+            helperText={isError ? "Input must be at least 5 characters long." : "This is a hint."}
+            required
+          />
+          <div>
+            <label className="block text-sm font-medium text-text-light mb-1">Search Input</label>
+            <SearchInput placeholder="Search for anything..." />
+          </div>
         </div>
       </Card>
 
+      <SectionHeader title="Selection Controls" />
       <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Radios</h3>
-        <div className="space-y-4 max-w-md">
-          <Radio
-            name="radioGroup1"
-            label="Option A"
-            value="optionA"
-            checked={selectedRadio === 'optionA'}
-            onChange={(e) => setSelectedRadio(e.target.value)}
-          />
-          <Radio
-            name="radioGroup1"
-            label="Option B"
-            value="optionB"
-            checked={selectedRadio === 'optionB'}
-            onChange={(e) => setSelectedRadio(e.target.value)}
-          />
-          <Radio
-            name="radioGroup1"
-            label="Disabled Option C"
-            value="optionC"
-            disabled
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h4 className="font-semibold text-text">Selects</h4>
+            <Select
+              label="Choose an option"
+              options={selectOptions}
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            />
+            <Select
+              label="Disabled Select"
+              options={selectOptions}
+              value="option2"
+              disabled
+            />
+          </div>
+          <div className="space-y-4">
+            <h4 className="font-semibold text-text">Checkboxes & Toggles</h4>
+            <Checkbox
+              label="Remember me"
+              checked={isChecked}
+              onChange={(e) => setIsChecked(e.target.checked)}
+            />
+            <Checkbox label="Opt-in to newsletter" defaultChecked />
+            <ToggleSwitch
+              label="Enable Notifications"
+              checked={isToggled}
+              onChange={setIsToggled}
+            />
+             <ToggleSwitch
+              label="Disabled Toggle"
+              checked={false}
+              onChange={() => {}}
+              disabled
+            />
+          </div>
+          <div className="space-y-4">
+            <h4 className="font-semibold text-text">Radio Buttons</h4>
+            <Radio
+              name="radioGroup1"
+              label="Option A"
+              value="optionA"
+              checked={selectedRadio === 'optionA'}
+              onChange={(e) => setSelectedRadio(e.target.value)}
+            />
+            <Radio
+              name="radioGroup1"
+              label="Option B"
+              value="optionB"
+              checked={selectedRadio === 'optionB'}
+              onChange={(e) => setSelectedRadio(e.target.value)}
+            />
+            <Radio
+              name="radioGroup1"
+              label="Disabled Option C"
+              value="optionC"
+              disabled
+            />
+          </div>
         </div>
       </Card>
 
+      <SectionHeader title="Advanced Inputs" />
       <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mt-8 mb-4 text-text">Combo Box (Autocomplete Select)</h3>
-        <div className="space-y-4 max-w-md">
+        <div className="space-y-6 max-w-md">
           <ComboBox
-            label="Select a Fruit"
+            label="Combo Box (Autocomplete)"
             options={fruitOptions}
             value={selectedFruit}
             onSelect={(value, label) => {
               setSelectedFruit(value);
-              alert(`Selected: ${label} (Value: ${value})`);
+              addToast(`Selected: ${label} (Value: ${value})`, 'info');
             }}
             placeholder="Search for a fruit..."
           />
-          <ComboBox
-            label="Disabled Combo Box"
-            options={fruitOptions}
-            value="orange"
-            disabled
-          />
-        </div>
-      </Card>
-
-      <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mt-8 mb-4 text-text">Multi-Select</h3>
-        <div className="space-y-4 max-w-md">
           <MultiSelect
-            label="Select Multiple Countries"
+            label="Multi-Select"
             options={countryOptions}
             value={selectedCountries}
             onChange={setSelectedCountries}
             placeholder="Select countries..."
           />
-          <MultiSelect
-            label="Disabled Multi-Select"
-            options={countryOptions}
-            value={[{ value: 'gbr', label: 'United Kingdom' }]}
-            isDisabled
-          />
-          <MultiSelect
-            label="Multi-Select with Clear/Search Disabled"
-            options={countryOptions}
-            isClearable={false}
-            isSearchable={false}
-            value={[{ value: 'fra', label: 'France' }]}
-            onChange={setSelectedCountries}
-          />
-        </div>
-      </Card>
-
-      <Card padding="p-6">
-        <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Date Picker</h3>
-        <div className="space-y-4 max-w-md">
           <DatePicker
-            label="Select a Date"
+            label="Date Picker"
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
             placeholderText="Click to select a date"
             isClearable
           />
-          <DatePicker
-            label="Disabled Date Picker"
-            selected={new Date()}
-            onChange={() => {}}
-            disabled
-          />
         </div>
       </Card>
-
+      
+      <SectionHeader title="File Upload" />
       <Card padding="p-6">
-        <h3 className="text-xl font-semibold mt-8 mb-4 text-text">File Upload</h3>
         <div className="space-y-4 max-w-md">
           <FileUpload
             label="Upload your document (PDF, TXT)"
@@ -359,17 +351,15 @@ const FormsSection: React.FC = () => {
         </div>
       </Card>
 
-      <Card padding="p-6">
-        <h3 className="text-xl font-semibold mt-8 mb-4 text-text">Form Template Example</h3>
-        <div className="max-w-2xl mx-auto"> {/* Max width for form template */}
-          <FormTemplate
-            title="User Registration"
-            fields={userProfileFields}
-            onSubmit={handleFormSubmit}
-            onCancel={handleFormCancel}
-            submitButtonText="Register"
-          />
-        </div>
+      <SectionHeader title="Form Template" />
+      <Card padding="p-0">
+        <FormTemplate
+          title="User Registration"
+          fields={userProfileFields}
+          onSubmit={handleFormSubmit}
+          onCancel={handleFormCancel}
+          submitButtonText="Register"
+        />
       </Card>
     </div>
   );

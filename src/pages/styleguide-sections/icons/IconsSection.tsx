@@ -37,7 +37,7 @@ const iconList: { name: React.ComponentProps<typeof Icon>['name']; category: str
  */
 const IconsSection: React.FC = () => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold text-text">Icons (Lucide)</h2>
       <p className="text-text-light">
         This project uses the <a href="https://lucide.dev/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lucide</a> icon library. Use the generic `Icon` component to display any icon by name. This method ensures only the used icons are bundled, optimizing performance.

@@ -1,7 +1,6 @@
-// src/contexts/ThemeContext.tsx
 import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
 
-export type ThemeName = 'light' | 'dark' | 'corporate' | 'midnight';
+export type ThemeName = 'light' | 'dark' | 'corporate' | 'midnight' | 'blueprint';
 
 interface ThemeContextType {
   theme: ThemeName;
@@ -12,7 +11,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const availableThemes: ThemeName[] = ['light', 'dark', 'corporate', 'midnight'];
+  const availableThemes: ThemeName[] = ['light', 'dark', 'corporate', 'midnight', 'blueprint'];
 
   const [theme, setThemeState] = useState<ThemeName>(() => {
     if (typeof window !== 'undefined') {
