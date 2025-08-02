@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import Card from '../../../components/ui/Card';
 import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
-import Stepper from '../../../components/ui/Stepper'; // <-- Import new component
+import Stepper from '../../../components/ui/Stepper';
 import { Tabs, TabPanel } from '../../../components/ui/Tabs';
-import { Menu, MenuItem } from '../../../components/ui/Menu';
+import { Menu, MenuItem, MenuDivider } from '../../../components/ui/Menu';
 import { Breadcrumbs, BreadcrumbItem } from '../../../components/ui/Breadcrumbs';
+// Import additional icons for the new samples
+import { 
+    Edit, Copy, Archive, Trash2, UserPlus, Settings, 
+    Home, Folder, FileText, LayoutDashboard, Users, HelpCircle 
+} from 'lucide-react';
 
 const NavigationSection: React.FC = () => {
   const handleMenuItemClick = (item: string) => {
     alert(`Menu Item Clicked: ${item}`);
   };
 
-  // State and data for the new Stepper component
   const stepperSteps = [
     { label: 'Account Setup', summary: 'Create your account' },
     { label: 'Personal Details', summary: 'Add your information' },
@@ -24,8 +28,9 @@ const NavigationSection: React.FC = () => {
   return (
     <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold mb-4 text-text">Navigation Components</h2>
+      <h1 className="text-red-200">Does this turn red?</h1>
 
-      <Card padding="p-6">
+      <Card id="navigation-stepper" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Stepper</h3>
         <p className="text-text-light mb-6">
           Guide users through a multi-step process with the Stepper component.
@@ -37,58 +42,67 @@ const NavigationSection: React.FC = () => {
         </div>
       </Card>
 
-      <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Tabs</h3>
+      <Card id="navigation-tabs" padding="p-6">
+        <h3 className="text-2xl font-semibold mb-4 text-text">Tabs with Icons</h3>
+        {/* --- Updated Tabs Example --- */}
         <Tabs defaultActiveTab="tab1">
-          <TabPanel id="tab1" label="Tab One">
-            <p className="text-text">Content for Tab One. This is where the first tab's information will go.</p>
-            <Input type="text" placeholder="Tab 1 Input" className="mt-4" />
+          <TabPanel id="tab1" label="Dashboard" icon={<LayoutDashboard size={16} />}>
+            <p className="text-text">Content for the Dashboard. This is where the first tab's information will go.</p>
+            <Input type="text" placeholder="Dashboard Input" className="mt-4" />
           </TabPanel>
-          <TabPanel id="tab2" label="Tab Two">
-            <p className="text-text">Content for Tab Two. This is different content.</p>
-            <Button variant="primary" className="mt-4">Tab 2 Button</Button>
+          <TabPanel id="tab2" label="Users" icon={<Users size={16} />}>
+            <p className="text-text">Content for User Management.</p>
+            <Button variant="primary" className="mt-4">Add User</Button>
           </TabPanel>
-          <TabPanel id="tab3" label="Tab Three">
-            <p className="text-text">Content for Tab Three. Can be anything!</p>
+          <TabPanel id="tab3" label="Settings" icon={<Settings size={16} />}>
+            <p className="text-text">Content for Application Settings.</p>
           </TabPanel>
         </Tabs>
       </Card>
 
-      <Card padding="p-6">
+      <Card id="navigation-menus" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Menus</h3>
         <div className="flex flex-wrap items-center gap-8">
           <Menu
-            trigger={<Button variant="primary">Open Menu (Right)</Button>}
+            trigger={<Button variant="primary">Menu with Icons</Button>}
             position="bottom-right"
           >
-            <MenuItem onClick={() => handleMenuItemClick('Item 1')}>Menu Item 1</MenuItem>
-            <MenuItem onClick={() => handleMenuItemClick('Item 2')}>Menu Item 2</MenuItem>
-            <MenuItem disabled>Disabled Item</MenuItem>
-            <MenuItem onClick={() => handleMenuItemClick('Item 3')}>Menu Item 3</MenuItem>
+            <MenuItem icon={<Edit size={16} />} onClick={() => handleMenuItemClick('Edit')}>
+              Edit Profile
+            </MenuItem>
+            <MenuItem icon={<Copy size={16} />} onClick={() => handleMenuItemClick('Duplicate')}>
+              Duplicate
+            </MenuItem>
+            <MenuDivider />
+            <MenuItem icon={<Archive size={16} />} onClick={() => handleMenuItemClick('Archive')}>
+              Archive
+            </MenuItem>
+            <MenuItem icon={<Trash2 size={16} />} onClick={() => handleMenuItemClick('Delete')}>
+              Delete
+            </MenuItem>
           </Menu>
+          
+          {/* --- Updated Second Menu Example --- */}
           <Menu
-            trigger={<Button variant="secondary">Open Menu (Left)</Button>}
+            trigger={<Button variant="secondary">Simple Menu</Button>}
             position="bottom-left"
           >
-            <MenuItem onClick={() => handleMenuItemClick('Another 1')}>Another Item 1</MenuItem>
-            <MenuItem onClick={() => handleMenuItemClick('Another 2')}>Another Item 2</MenuItem>
+            <MenuItem icon={<Settings size={16}/>} onClick={() => handleMenuItemClick('Account Settings')}>Account Settings</MenuItem>
+            <MenuItem icon={<UserPlus size={16}/>} onClick={() => handleMenuItemClick('Invite Team')}>Invite Team</MenuItem>
+            <MenuDivider />
+            <MenuItem icon={<HelpCircle size={16}/>} onClick={() => handleMenuItemClick('Support')}>Support</MenuItem>
           </Menu>
         </div>
       </Card>
 
-      <Card padding="p-6">
-        <h3 className="text-2xl font-semibold mb-4 text-text">Breadcrumbs</h3>
+      <Card id="navigation-breadcrumbs" padding="p-6">
+        <h3 className="text-2xl font-semibold mb-4 text-text">Breadcrumbs with Icons</h3>
         <div className="space-y-4">
+          {/* --- Updated Breadcrumbs Example --- */}
           <Breadcrumbs>
-            <BreadcrumbItem label="Home" to="/" />
-            <BreadcrumbItem label="Dashboard" to="/dashboard" />
-            <BreadcrumbItem label="Current Page" isCurrent />
-          </Breadcrumbs>
-
-          <Breadcrumbs>
-            <BreadcrumbItem label="Products" to="/products" />
-            <BreadcrumbItem label="Category" to="/products/category" />
-            <BreadcrumbItem label="Item Details" isCurrent />
+            <BreadcrumbItem icon={<Home size={14} />} label="Home" to="/" />
+            <BreadcrumbItem icon={<Folder size={14} />} label="Dashboard" to="/dashboard" />
+            <BreadcrumbItem icon={<FileText size={14} />} label="Current Page" isCurrent />
           </Breadcrumbs>
         </div>
       </Card>

@@ -31,15 +31,16 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       console.warn(`Attempted to set an unsupported theme: ${newTheme}`);
       return;
     }
+    // Logic now only updates state and localStorage
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.className = '';
-    document.documentElement.classList.add(newTheme);
   }, [availableThemes]);
 
+  // This useEffect is now the single source of truth for the DOM side-effect.
   useEffect(() => {
-    document.documentElement.className = '';
-    document.documentElement.classList.add(theme);
+    const root = document.documentElement;
+    root.className = ''; // Clear all existing classes
+    root.classList.add(theme);
   }, [theme]);
 
   return (

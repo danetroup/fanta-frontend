@@ -4,12 +4,33 @@ import Avatar from '../../../components/ui/Avatar';
 import Badge from '../../../components/ui/Badge';
 import StatCard from '../../../components/ui/StatCard';
 import ToggleSwitch from '../../../components/ui/ToggleSwitch';
+import ActivityFeed from '../../../components/ui/ActivityFeed'; // <-- New import
 
-// Memoize the sections that don't need to re-render when the toggle state changes.
-// This prevents the lazy-loaded icons inside StatCard from flickering.
+// --- Mock Data for ActivityFeed ---
+const mockActivity = [
+  { 
+    id: 1, 
+    author: 'Olivia Rhye', 
+    action: 'Upcoming deprecation of GPU machine type',
+    timestamp: new Date(Date.now() - 20 * 60 * 60 * 1000) // 20 hours ago
+  },
+  { 
+    id: 2, 
+    author: 'Phoenix Baker', 
+    action: 'Update on GitHub Copilot consumptive billing',
+    timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) // Yesterday
+  },
+  { 
+    id: 3, 
+    author: 'Lana Steiner', 
+    action: 'GitHub Actions: New APIs and windows-latest migration',
+    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
+  },
+];
 
+// Memoize the sections that don't need to re-render.
 const AvatarsSection = memo(() => (
-  <Card padding="p-6">
+  <Card id="elements-avatars" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Avatars</h3>
     <div className="flex flex-wrap items-center gap-4">
       <Avatar name="Dane Troup" size="sm" />
@@ -21,7 +42,7 @@ const AvatarsSection = memo(() => (
 ));
 
 const BadgesSection = memo(() => (
-  <Card padding="p-6">
+  <Card id="elements-badges" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Badges</h3>
     <div className="flex flex-wrap items-center gap-4">
       <Badge variant="primary">Primary</Badge>
@@ -34,7 +55,7 @@ const BadgesSection = memo(() => (
 ));
 
 const StatCardsSection = memo(() => (
-  <Card padding="p-6">
+  <Card id="elements-stats" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Stat Cards</h3>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <StatCard
@@ -61,6 +82,20 @@ const StatCardsSection = memo(() => (
   </Card>
 ));
 
+// --- New Activity Feed Section ---
+const ActivityFeedSection = memo(() => (
+  <Card id="elements-activity" padding="p-6">
+    <h3 className="text-2xl font-semibold mb-4 text-text">Activity Feed</h3>
+    <p className="text-muted-foreground mb-6">
+      Displays a chronological list of events or changes.
+    </p>
+    <div className="max-w-md">
+      <ActivityFeed items={mockActivity} title="Latest Changes" />
+    </div>
+  </Card>
+));
+
+
 /**
  * A style guide section for small, atomic UI elements like Avatars, Badges, and Stat Cards.
  */
@@ -70,16 +105,17 @@ const ElementsSection: React.FC = () => {
   return (
    <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold text-text">UI Elements</h2>
-      <p className="text-text-light">
+      <p className="text-muted-foreground">
         These are small, atomic components that can be composed to build more complex UI patterns.
       </p>
 
       <AvatarsSection />
       <BadgesSection />
       <StatCardsSection />
+      <ActivityFeedSection /> {/* <-- New section added here */}
 
       {/* Toggle Switches Section - This is the only part that will re-render on toggle */}
-      <Card padding="p-6">
+      <Card id="elements-toggle" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Toggle Switches</h3>
         <div className="flex flex-col space-y-4">
           <ToggleSwitch

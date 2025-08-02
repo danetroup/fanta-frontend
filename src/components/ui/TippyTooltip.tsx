@@ -1,31 +1,27 @@
 import React from 'react';
 import Tippy, { type TippyProps } from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // Recommended for base styles
-
-// Assuming you import the custom theme in your main CSS file, e.g., src/index.css
-// import '../../styles/tippy-theme.css'; 
+import 'tippy.js/dist/tippy.css';
 
 /**
  * A wrapper around the Tippy.js library to provide a standardized,
  * theme-aware tooltip for the Fanta Frontend project.
- *
- * This component abstracts the Tippy.js setup and applies our custom 'fanta' theme.
  */
 const TippyTooltip: React.FC<TippyProps> = ({ children, content, ...props }) => {
+  // Check if the child is a valid React element.
+  // If not (e.g., it's a string), wrap it in a span so Tippy has a DOM element to attach to.
+  const triggerElement = React.isValidElement(children) ? children : <span>{children}</span>;
+
   return (
     <Tippy
       content={content}
-      // Apply our custom theme
-      theme="fanta"
-      // Sensible defaults that can be overridden by props
+      theme="fanta" // Your custom theme
       animation="fade"
       duration={200}
-      delay={[200, 200]} // [show, hide] delay
+      delay={[200, 0]} // A shorter hide delay is often better for UX
       placement="top"
       {...props}
     >
-      {/* Tippy requires a single child element to attach to */}
-      <span>{children}</span>
+      {triggerElement}
     </Tippy>
   );
 };

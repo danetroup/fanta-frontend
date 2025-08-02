@@ -75,13 +75,13 @@ const Button: React.FC<ButtonProps> = ({
   // Base styles are applied to all buttons for consistency.
   const baseStyles = 'appearance-none inline-flex items-center justify-center font-semibold rounded-md shadow-sm transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap';
 
-  // Styles for each button variant, including hover, active, and disabled states.
+  // Styles for each button variant, now fully theme-aware.
   const variantStyles = {
-    primary: 'bg-primary text-white hover:brightness-110 active:brightness-105 focus:ring-primary disabled:hover:brightness-100',
-    secondary: 'bg-secondary text-white hover:brightness-110 active:brightness-105 focus:ring-secondary disabled:hover:brightness-100',
-    danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800 focus:ring-red-500 disabled:hover:bg-red-600',
+    primary: 'bg-primary text-primary-foreground hover:brightness-110 active:brightness-105 focus:ring-primary disabled:hover:brightness-100',
+    secondary: 'bg-secondary text-secondary-foreground hover:brightness-110 active:brightness-105 focus:ring-secondary disabled:hover:brightness-100',
+    danger: 'bg-danger text-danger-foreground hover:brightness-110 active:brightness-95 focus:ring-danger disabled:hover:brightness-100',
     outline: 'border border-border text-text hover:bg-primary/10 hover:text-primary focus:ring-primary disabled:hover:bg-transparent disabled:hover:text-text',
-    accent: 'bg-accent text-white hover:brightness-110 active:brightness-105 focus:ring-accent disabled:hover:brightness-100',
+    accent: 'bg-accent text-accent-foreground hover:brightness-110 active:brightness-105 focus:ring-accent disabled:hover:brightness-100',
     ghost: 'bg-transparent text-text hover:bg-border focus:ring-primary disabled:hover:bg-transparent',
     link: 'bg-transparent text-primary hover:underline focus:ring-primary underline-offset-4 shadow-none disabled:hover:no-underline',
   };

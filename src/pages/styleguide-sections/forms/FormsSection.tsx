@@ -120,7 +120,7 @@ const FormsSection: React.FC = () => {
       />
 
       <SectionHeader title="Buttons & Button Groups" />
-      <Card padding="p-6">
+      <Card id="form-buttons" padding="p-6">
         <h4 className="text-lg font-semibold mb-2 text-text">Variants & Sizes</h4>
         <div className="flex flex-wrap items-center gap-4 mb-6">
           <Button variant="primary">Primary</Button>
@@ -176,7 +176,7 @@ const FormsSection: React.FC = () => {
       </Card>
 
       <SectionHeader title="Standard Inputs" />
-      <Card padding="p-6">
+      <Card id="form-inputs" padding="p-6">
         <div className="space-y-6 max-w-md">
           <Input
             label="Standard Input"
@@ -215,7 +215,7 @@ const FormsSection: React.FC = () => {
       </Card>
 
       <SectionHeader title="Standard & Search Inputs" />
-      <Card padding="p-6">
+      <Card id="form-search" padding="p-6">
         <div className="space-y-6 max-w-md">
           <Input
             label="Standard Input"
@@ -240,7 +240,7 @@ const FormsSection: React.FC = () => {
       </Card>
 
       <SectionHeader title="Selection Controls" />
-      <Card padding="p-6">
+      <Card id="form-select" padding="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <h4 className="font-semibold text-text">Selects</h4>
@@ -304,7 +304,7 @@ const FormsSection: React.FC = () => {
       </Card>
 
       <SectionHeader title="Advanced Inputs" />
-      <Card padding="p-6">
+      <Card id="form-combo" padding="p-6">
         <div className="space-y-6 max-w-md">
           <ComboBox
             label="Combo Box (Autocomplete)"
@@ -334,7 +334,7 @@ const FormsSection: React.FC = () => {
       </Card>
       
       <SectionHeader title="File Upload" />
-      <Card padding="p-6">
+      <Card id="form-upload" padding="p-6">
         <div className="space-y-4 max-w-md">
           <FileUpload
             label="Upload your document (PDF, TXT)"
@@ -352,7 +352,7 @@ const FormsSection: React.FC = () => {
       </Card>
 
       <SectionHeader title="Form Template" />
-      <Card padding="p-0">
+      <Card id="form-form" padding="p-0">
         <FormTemplate
           title="User Registration"
           fields={userProfileFields}

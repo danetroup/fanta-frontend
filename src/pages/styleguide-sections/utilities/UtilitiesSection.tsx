@@ -100,19 +100,25 @@ const UtilitiesSection: React.FC = () => {
         A quick reference for some of the most common utility classes available in Tailwind. For a full list, always refer to the official Tailwind CSS documentation.
       </p>
 
-      <UtilityClassReference 
+      <div id="utilities-spacing">
+        <UtilityClassReference 
         title="Spacing (Padding & Margin)" 
         classes={spacingClasses}
         sectionDescription={ <p>Tailwind's spacing scale is based on a <code className="bg-primary/10 text-primary px-1 rounded">0.25rem</code> unit, where <code className="bg-primary/10 text-primary px-1 rounded">1rem = 16px</code> by default. The number in the class name is a multiplier. For example, <code className="bg-primary/10 text-primary px-1 rounded">p-4</code> equals <code className="bg-primary/10 text-primary px-1 rounded">4 * 0.25rem = 1rem (16px)</code>.</p> }
       />
-      <UtilityClassReference 
+      </div>
+
+
+      <div id="utilities-flexbox">
+        <UtilityClassReference 
         title="Flexbox" 
         classes={flexboxClasses}
         sectionDescription={ <p>Flexbox is a layout model for arranging items in a single dimension—either a row or a column. Use <code className="bg-primary/10 text-primary px-1 rounded">justify-*</code> to control spacing along the main axis and <code className="bg-primary/10 text-primary px-1 rounded">items-*</code> for alignment on the cross axis.</p> }
       />
+      </div>
       
       {/* Moved Layout Utilities Section */}
-      <Card padding="p-6" className="mb-8">
+      <Card id="utilities-layout" padding="p-6" className="mb-8">
         <h3 className="text-2xl font-semibold mb-2 text-text">Layout (Display, Sizing, Position)</h3>
         <p className="text-text-light mb-6">
           Use these utility classes to control the display, sizing, and positioning of elements. These are fundamental for building any UI structure.
@@ -141,9 +147,15 @@ const UtilitiesSection: React.FC = () => {
         </div>
       </Card>
 
-      <UtilityClassReference title="Typography" classes={typographyClasses} />
-      <UtilityClassReference title="Borders & Rounded Corners" classes={borderClasses} />
-      <UtilityClassReference title="Shadows" classes={shadowClasses} />
+      <div id="utilities-typography">
+        <UtilityClassReference title="Typography" classes={typographyClasses} />
+        </div>
+      <div id="utilities-borders">
+        <UtilityClassReference title="Borders & Rounded Corners" classes={borderClasses} />
+        </div>
+      <div id="utilities-shadows">
+        <UtilityClassReference title="Shadows" classes={shadowClasses} />
+        </div>
     </div>
   );
 };

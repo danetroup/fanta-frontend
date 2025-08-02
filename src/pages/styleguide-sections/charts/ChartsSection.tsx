@@ -14,6 +14,7 @@ const ChartsSection: React.FC = () => {
       </p>
 
       {/* Bar Chart with Table View */}
+      <div id="charts-bar">
       <ChartWithTable
         title="Monthly Revenue"
         data={mockChartData}
@@ -32,8 +33,10 @@ const ChartsSection: React.FC = () => {
           ]}
         />
       </ChartWithTable>
+      </div>
 
       {/* Line Chart with Table View */}
+      <div id="charts-line">
       <ChartWithTable
         title="User Growth"
         data={mockChartData}
@@ -52,8 +55,10 @@ const ChartsSection: React.FC = () => {
           ]}
         />
       </ChartWithTable>
+      </div>
 
       {/* Pie Chart with Table View */}
+      <div id="charts-pie">
       <ChartWithTable
         title="Data Distribution"
         data={mockPieChartData}
@@ -64,6 +69,7 @@ const ChartsSection: React.FC = () => {
       >
         <PieChart data={mockPieChartData} dataKey="value" nameKey="name" />
       </ChartWithTable>
+      </div>
     </div>
   );
 };

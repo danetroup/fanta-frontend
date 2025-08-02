@@ -10,18 +10,35 @@
 
   /* Color Variables */
   --app-primary-color: rgb(37, 99, 235);
+  --app-primary-foreground-color: rgb(255, 255, 255);
   --app-secondary-color: rgb(249, 115, 22);
+  --app-secondary-foreground-color: rgb(255, 255, 255);
   --app-accent-color: rgb(102, 126, 234);
+  --app-accent-foreground-color: rgb(255, 255, 255);
   --app-text-color: rgb(31, 41, 55);
   --app-bg-color: rgb(243, 244, 246);
   --app-card-bg-color: rgb(255, 255, 255);
   --app-border-color: rgb(229, 231, 235);
-  --app-bg-color-hover: rgb(230, 230, 230);
+  --app-bg-color-hover: rgb(240, 240, 240);
+  --app-danger-color: rgb(220 38 38);         /* red-600 */
+  --app-danger-foreground-color: rgb(240, 240, 240); /* white */
+  
 
-  /* Raw RGB values for RGBA calculations in Sass/CSS */
+
+  /* Raw RGB values for Tailwind CSS opacity modifiers */
   --app-primary-color-raw: 37, 99, 235;
+  --app-primary-foreground-color-raw: 255, 255, 255;
+  --app-secondary-color-raw: 249, 115, 22;
+  --app-secondary-foreground-color-raw: 255, 255, 255;
+  --app-accent-color-raw: 102, 126, 234;
+  --app-accent-foreground-color-raw: 255, 255, 255;
   --app-text-color-raw: 31, 41, 55;
   --app-bg-color-raw: 243, 244, 246;
+  --app-card-bg-color-raw: 255, 255, 255;
+  --app-border-color-raw: 229, 231, 235;
+  --app-bg-color-hover-raw: 255, 255, 255;
+  --app-danger-color-raw: 220, 38, 38;
+  --app-danger-foreground-color-raw: 255, 255, 255;
 }
 
 /* Dark Theme */
@@ -32,18 +49,33 @@
 
   /* Color Variables */
   --app-primary-color: rgb(96, 165, 250);
+  --app-primary-foreground-color: rgb(17, 24, 39);
   --app-secondary-color: rgb(251, 146, 60);
+  --app-secondary-foreground-color: rgb(17, 24, 39);
   --app-accent-color: rgb(129, 140, 248);
+  --app-accent-foreground-color: rgb(17, 24, 39);
   --app-text-color: rgb(209, 213, 219);
   --app-bg-color: rgb(17, 24, 39);
   --app-card-bg-color: rgb(31, 41, 55);
   --app-border-color: rgb(55, 65, 81);
-  --app-bg-color-hover: rgb(30, 40, 60);
+  --app-bg-color-hover: rgb(42, 42, 42);
+  --app-danger-color: rgb(220 38 38);         /* red-600 */
+  --app-danger-foreground-color: rgb(255 255 255); /* white */
 
-  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  /* Raw RGB values for Tailwind CSS opacity modifiers */
   --app-primary-color-raw: 96, 165, 250;
+  --app-primary-foreground-color-raw: 17, 24, 39;
+  --app-secondary-color-raw: 251, 146, 60;
+  --app-secondary-foreground-color-raw: 17, 24, 39;
+  --app-accent-color-raw: 129, 140, 248;
+  --app-accent-foreground-color-raw: 17, 24, 39;
   --app-text-color-raw: 209, 213, 219;
   --app-bg-color-raw: 17, 24, 39;
+  --app-card-bg-color-raw: 31, 41, 55;
+  --app-border-color-raw: 55, 65, 81;
+  --app-bg-color-hover-raw: 42, 42, 42;
+  --app-danger-color-raw: 220, 38, 38;
+  --app-danger-foreground-color-raw: 255, 255, 255;
 }
 
 /* Corporate Theme */
@@ -54,18 +86,33 @@
   
   /* Color Variables */
   --app-primary-color: rgb(16, 185, 129);
+  --app-primary-foreground-color: rgb(255, 255, 255);
   --app-secondary-color: rgb(252, 211, 77);
+  --app-secondary-foreground-color: rgb(55, 65, 81);
   --app-accent-color: rgb(110, 231, 183);
+  --app-accent-foreground-color: rgb(55, 65, 81);
   --app-text-color: rgb(55, 65, 81);
   --app-bg-color: rgb(249, 250, 251);
   --app-card-bg-color: rgb(255, 255, 255);
   --app-border-color: rgb(209, 213, 219);
-  --app-bg-color-hover: rgb(240, 240, 240);
+  --app-bg-color-hover: rgb(210, 210, 210);
+  --app-danger-color: rgb(220 38 38);         /* red-600 */
+  --app-danger-foreground-color: rgb(255 255 255); /* white */
 
-  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  /* Raw RGB values for Tailwind CSS opacity modifiers */
   --app-primary-color-raw: 16, 185, 129;
+  --app-primary-foreground-color-raw: 255, 255, 255;
+  --app-secondary-color-raw: 252, 211, 77;
+  --app-secondary-foreground-color-raw: 55, 65, 81;
+  --app-accent-color-raw: 110, 231, 183;
+  --app-accent-foreground-color-raw: 55, 65, 81;
   --app-text-color-raw: 55, 65, 81;
   --app-bg-color-raw: 249, 250, 251;
+  --app-card-bg-color-raw: 255, 255, 255;
+  --app-border-color-raw: 209, 213, 219;
+  --app-bg-color-hover-raw: 210, 210, 210;
+  --app-danger-color-raw: 220, 38, 38;
+  --app-danger-foreground-color-raw: 255, 255, 255;
 }
 
 /* Midnight Theme */
@@ -76,18 +123,33 @@
 
   /* Color Variables */
   --app-primary-color: rgb(129, 140, 248);
+  --app-primary-foreground-color: rgb(255, 255, 255);
   --app-secondary-color: rgb(192, 132, 252);
+  --app-secondary-foreground-color: rgb(15, 23, 42);
   --app-accent-color: rgb(99, 102, 241);
+  --app-accent-foreground-color: rgb(255, 255, 255);
   --app-text-color: rgb(226, 232, 240);
   --app-bg-color: rgb(15, 23, 42);
   --app-card-bg-color: rgb(30, 41, 59);
   --app-border-color: rgb(71, 85, 105);
-  --app-bg-color-hover: rgb(25, 35, 55);
+  --app-bg-color-hover: rgb(42, 42, 42);
+  --app-danger-color: rgb(220 38 38);         /* red-600 */
+  --app-danger-foreground-color: rgb(255 255 255); /* white */
 
-  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  /* Raw RGB values for Tailwind CSS opacity modifiers */
   --app-primary-color-raw: 129, 140, 248;
+  --app-primary-foreground-color-raw: 255, 255, 255;
+  --app-secondary-color-raw: 192, 132, 252;
+  --app-secondary-foreground-color-raw: 15, 23, 42;
+  --app-accent-color-raw: 99, 102, 241;
+  --app-accent-foreground-color-raw: 255, 255, 255;
   --app-text-color-raw: 226, 232, 240;
   --app-bg-color-raw: 15, 23, 42;
+  --app-card-bg-color-raw: 30, 41, 59;
+  --app-border-color-raw: 71, 85, 105;
+  --app-bg-color-hover-raw: 42, 42, 42;
+  --app-danger-color-raw: 220, 38, 38;
+  --app-danger-foreground-color-raw: 255, 255, 255;
 }
 
 /* Blueprint Theme */
@@ -97,85 +159,53 @@
   --app-font-serif: 'Times New Roman', Times, serif;
 
   /* Color Variables */
-  --app-primary-color: rgb(51, 51, 51); /* White for primary actions/buttons */
-  --app-secondary-color: rgb(125, 125, 125); /* Light grey for secondary elements */
+  --app-primary-color: rgb(51, 51, 51);
+  --app-primary-foreground-color: rgb(255, 255, 255);
+  --app-secondary-color: rgb(125, 125, 125);
+  --app-secondary-foreground-color: rgb(255, 255, 255);
   --app-accent-color: rgb(0, 0, 0);
+  --app-accent-foreground-color: rgb(255, 255, 255);
   --app-text-color: rgb(0, 0, 0);
-  --app-bg-color: rgb(255, 255, 255); /* The main blue background */
-  --app-card-bg-color: rgb(255, 255, 255); /* Semi-transparent darker blue */
-  --app-border-color: rgb(194, 194, 194); /* Semi-transparent white */
-  --app-bg-color-hover: rgb(166, 166, 166);
+  --app-bg-color: rgb(255, 255, 255);
+  --app-card-bg-color: rgb(255, 255, 255);
+  --app-border-color: rgb(194, 194, 194);
+  --app-bg-color-hover: rgb(230, 230, 230);
+  --app-danger-color: rgb(220 38 38);         /* red-600 */
+  --app-danger-foreground-color: rgb(255 255 255); /* white */
 
-  /* Raw RGB values for RGBA calculations in Sass/CSS */
+  /* Raw RGB values for Tailwind CSS opacity modifiers */
   --app-primary-color-raw: 51, 51, 51;
+  --app-primary-foreground-color-raw: 255, 255, 255;
+  --app-secondary-color-raw: 125, 125, 125;
+  --app-secondary-foreground-color-raw: 255, 255, 255;
+  --app-accent-color-raw: 0, 0, 0;
+  --app-accent-foreground-color-raw: 255, 255, 255;
   --app-text-color-raw: 0, 0, 0;
   --app-bg-color-raw: 255, 255, 255;
+  --app-card-bg-color-raw: 255, 255, 255;
+  --app-border-color-raw: 194, 194, 194;
+  --app-bg-color-hover-raw: 230, 230, 230;
+  --app-danger-color-raw: 220, 38, 38;
+  --app-danger-foreground-color-raw: 255, 255, 255;
 }
 
 
-/* --- AG Grid Theme Overrides --- */
+/* --- AG Grid Theme Overrides (Now fully dynamic) --- */
 
-html.light .ag-theme-quartz {
-  --ag-foreground-color: rgb(31, 41, 55);
-  --ag-background-color: rgb(255, 255, 255);
-  --ag-header-background-color: rgb(243, 244, 246);
-  --ag-odd-row-background-color: rgb(243, 244, 246);
-  --ag-even-row-background-color: rgb(255, 255, 255);
-  --ag-border-color: rgb(229, 231, 235);
-  --ag-row-hover-color: rgb(240, 240, 240);
-  --ag-selected-row-background-color: rgb(209, 226, 250);
-  --ag-active-color: rgb(37, 99, 235);
-  --ag-range-selection-background-color: rgba(37, 99, 235, 0.2);
-}
+:root .ag-theme-quartz {
+  --ag-foreground-color: var(--app-text-color);
+  --ag-background-color: var(--app-card-bg-color);
+  --ag-header-background-color: var(--app-bg-color);
+  --ag-odd-row-background-color: var(--app-bg-color);
+  --ag-even-row-background-color: var(--app-card-bg-color);
+  --ag-border-color: var(--app-border-color);
+  --ag-row-hover-color: var(--app-bg-color-hover);
+  
+  /* Link selected colors to theme colors */
+  --ag-selected-row-background-color: var(--app-primary-color);
+  --ag-selected-row-foreground-color: var(--app-primary-foreground-color);
+  --ag-active-color: var(--app-accent-color);
 
-html.dark .ag-theme-quartz {
-  --ag-foreground-color: rgb(209, 213, 219);
-  --ag-background-color: rgb(31, 41, 55);
-  --ag-header-background-color: rgb(17, 24, 39);
-  --ag-odd-row-background-color: rgb(17, 24, 39);
-  --ag-even-row-background-color: rgb(31, 41, 55);
-  --ag-border-color: rgb(55, 65, 81);
-  --ag-row-hover-color: rgb(44, 53, 71);
-  --ag-selected-row-background-color: rgb(59, 130, 246);
-  --ag-active-color: rgb(96, 165, 250);
-  --ag-range-selection-background-color: rgba(96, 165, 250, 0.2);
-}
-
-html.corporate .ag-theme-quartz {
-  --ag-foreground-color: rgb(55, 65, 81);
-  --ag-background-color: rgb(255, 255, 255);
-  --ag-header-background-color: rgb(249, 250, 251);
-  --ag-odd-row-background-color: rgb(249, 250, 251);
-  --ag-even-row-background-color: rgb(255, 255, 255);
-  --ag-border-color: rgb(209, 213, 219);
-  --ag-row-hover-color: rgb(224, 242, 247);
-  --ag-selected-row-background-color: rgb(167, 243, 208);
-  --ag-active-color: rgb(16, 185, 129);
-  --ag-range-selection-background-color: rgba(16, 185, 129, 0.2);
-}
-
-html.midnight .ag-theme-quartz {
-  --ag-foreground-color: rgb(226, 232, 240);
-  --ag-background-color: rgb(30, 41, 59);
-  --ag-header-background-color: rgb(15, 23, 42);
-  --ag-odd-row-background-color: rgb(15, 23, 42);
-  --ag-even-row-background-color: rgb(30, 41, 59);
-  --ag-border-color: rgb(71, 85, 105);
-  --ag-row-hover-color: rgb(44, 59, 83);
-  --ag-selected-row-background-color: rgb(79, 70, 229);
-  --ag-active-color: rgb(129, 140, 248);
-  --ag-range-selection-background-color: rgba(129, 140, 248, 0.2);
-}
-
-html.blueprint .ag-theme-quartz {
-  --ag-foreground-color: rgb(0, 0, 0);
-  --ag-background-color: rgb(255, 255, 255);
-  --ag-header-background-color: rgb(223, 223, 223);
-  --ag-odd-row-background-color: rgb(240, 240, 240);
-  --ag-even-row-background-color: rgb(255, 255, 255);
-  --ag-border-color: rgba(0, 0, 0, 0);
-  --ag-row-hover-color: rgb(223, 239, 248);
-  --ag-selected-row-background-color: rgb(185, 227, 255);
-  --ag-active-color: rgb(250, 180, 180);
-  --ag-range-selection-background-color: rgb(139, 255, 209);
+  /* Use -raw variables for colors with opacity */
+  --ag-range-selection-background-color: rgba(var(--app-primary-color-raw), 0.2);
 }

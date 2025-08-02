@@ -27,7 +27,7 @@ const LayoutSection: React.FC = () => {
       </p>
 
       {/* Theme Info */}
-      <Card padding="p-6">
+      <Card id="layout-theme"  padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Current Theme Info</h3>
         <p className="text-lg text-text">
           Active Theme: <span className="font-bold text-primary">{theme.charAt(0).toUpperCase() + theme.slice(1)} Mode</span>
@@ -48,23 +48,27 @@ const LayoutSection: React.FC = () => {
       </Card>
 
       {/* Colors */}
-      <Card padding="p-6">
+      <Card id="layout-colors" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Colors</h3>
-        <p className="text-text-light mb-6">
-          These colors are defined in the theme and can be applied using utility classes for backgrounds (<code className="bg-primary/10 text-primary px-1 rounded">bg-*</code>), text (<code className="bg-primary/10 text-primary px-1 rounded">text-*</code>), borders (<code className="bg-primary/10 text-primary px-1 rounded">border-*</code>), and more.
+        <p className="text-muted-foreground mb-6">
+          These colors are defined in the theme and can be applied using utility classes like{' '}
+          <code className="bg-background border border-border text-text px-1 rounded">bg-*</code>,{' '}
+          <code className="bg-background border border-border text-text px-1 rounded">text-*</code>, and{' '}
+          <code className="bg-background border border-border text-text px-1 rounded">border-*</code>.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <div className="flex flex-col items-center p-4 rounded-md bg-primary text-white"><span>Primary</span><code className="text-xs opacity-75 mt-1">bg-primary</code></div>
-          <div className="flex flex-col items-center p-4 rounded-md bg-secondary text-white"><span>Secondary</span><code className="text-xs opacity-75 mt-1">bg-secondary</code></div>
-          <div className="flex flex-col items-center p-4 rounded-md bg-accent text-white"><span>Accent</span><code className="text-xs opacity-75 mt-1">bg-accent</code></div>
-          <div className="flex flex-col items-center p-4 rounded-md bg-background text-text border border-border"><span>Background</span><code className="text-xs opacity-75 mt-1">bg-background</code></div>
-          <div className="flex flex-col items-center p-4 rounded-md bg-card text-text border border-border"><span>Card</span><code className="text-xs opacity-75 mt-1">bg-card</code></div>
-          <div className="flex flex-col items-center p-4 rounded-md bg-border text-text border border-border"><span>Border</span><code className="text-xs opacity-75 mt-1">bg-border</code></div>
+          {/* --- Updated to use foreground colors --- */}
+          <div className="flex flex-col items-center justify-center p-4 rounded-md bg-primary text-primary-foreground"><span>Primary</span><code className="text-xs opacity-75 mt-1">bg-primary</code></div>
+          <div className="flex flex-col items-center justify-center p-4 rounded-md bg-secondary text-secondary-foreground"><span>Secondary</span><code className="text-xs opacity-75 mt-1">bg-secondary</code></div>
+          <div className="flex flex-col items-center justify-center p-4 rounded-md bg-accent text-accent-foreground"><span>Accent</span><code className="text-xs opacity-75 mt-1">bg-accent</code></div>
+          <div className="flex flex-col items-center justify-center p-4 rounded-md bg-background text-text border border-border"><span>Background</span><code className="text-xs opacity-75 mt-1">bg-background</code></div>
+          <div className="flex flex-col items-center justify-center p-4 rounded-md bg-card text-text border border-border"><span>Card</span><code className="text-xs opacity-75 mt-1">bg-card</code></div>
+          <div className="flex flex-col items-center justify-center p-4 rounded-md border-2 border-border text-text"><span>Border</span><code className="text-xs opacity-75 mt-1">border-border</code></div>
         </div>
       </Card>
 
       {/* Typography */}
-      <Card padding="p-6">
+      <Card id="layout-type" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Typography</h3>
          <p className="text-text-light mb-6">
           The typographic scale is controlled by font-size (<code className="bg-primary/10 text-primary px-1 rounded">text-*</code>) and font-weight (<code className="bg-primary/10 text-primary px-1 rounded">font-*</code>) utility classes.
@@ -82,7 +86,7 @@ const LayoutSection: React.FC = () => {
       </Card>
 
       {/* Icon Section */}
-      <Card padding="p-6">
+      <Card id="layout-icon" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Icons</h3>
         <p className="text-text-light mb-6">
           Use the `Icon` component to render any icon from the Lucide library. See the "Icons" tab or the{' '}
@@ -111,7 +115,7 @@ const LayoutSection: React.FC = () => {
       </Card>
 
       {/* Card Examples */}
-      <Card padding="p-6">
+      <Card id="layout-card" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Cards</h3>
         <p className="text-text mb-6">
           The Card component is highly flexible. Use props to override default theme styles for background, border, padding, and shadow.
@@ -127,7 +131,7 @@ const LayoutSection: React.FC = () => {
       </Card>
 
       {/* Modals */}
-      <Card padding="p-6">
+      <Card id="layout-modal" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Modals</h3>
         <Button onClick={() => setIsModalOpen(true)} variant="accent">Open Modal</Button>
         <Modal
@@ -147,7 +151,7 @@ const LayoutSection: React.FC = () => {
       </Card>
 
       {/* Drawers */}
-      <Card padding="p-6">
+      <Card id="layout-drawer" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Drawers</h3>
         <div className="flex flex-wrap items-center gap-4">
           <Button onClick={() => setIsRightDrawerOpen(true)} variant="primary">Open Right Drawer</Button>
@@ -162,7 +166,7 @@ const LayoutSection: React.FC = () => {
       </Card>
 
       {/* Accordion */}
-      <Card padding="p-6">
+      <Card id="layout-accordian" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Accordion/Collapsible Panels</h3>
         <Accordion singleOpen>
           <AccordionItem id="item1" header="Section 1: What is this boilerplate?"><p className="text-text">This is a React and Tailwind CSS boilerplate designed for rapid prototyping. It comes with a comprehensive set of pre-built, theme-aware UI components.</p></AccordionItem>
