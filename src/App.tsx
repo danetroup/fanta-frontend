@@ -1,6 +1,7 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Layout & Context
 import DefaultLayout from './layouts/DefaultLayout';
@@ -34,6 +35,13 @@ function App() {
           </DefaultLayout>
         </ToastProvider>
       </ThemeProvider>
+      {/* Conditionally render Vercel components */}
+      {import.meta.env.VITE_ENABLE_VERCEL_ANALYTICS === 'true' && (
+        <>
+          <Analytics />
+          <SpeedInsights />
+        </>
+      )}
     </BrowserRouter>
   );
 }
