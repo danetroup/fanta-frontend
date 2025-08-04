@@ -190,9 +190,8 @@ const ScreenBuilder: React.FC = () => {
     if (availableThemesProp && availableThemesProp.type && availableThemesProp.type.startsWith('ThemeName[]')) {
         // This is a bit of a hack to parse the 'ThemeName' enum values from its type string
         // Assumes ThemeName is defined as 'light' | 'dark' | ...
-        const themeEnumType = wizardManifest.utils.find(util => util.name === 'ThemeName' && util.category === 'utility'); // Assuming you'd make a WizardEntry for ThemeName type itself
         // A more robust way would be to import ThemeName directly and iterate it, or parse it carefully
-        themeOptions = wizardManifest.utils.find(u => u.name === 'ThemeProvider')?.availableThemes || themeOptions; // This line won't work yet based on current manifest structure for availableThemes
+        themeOptions = ['light', 'dark', 'corporate', 'midnight', 'blueprint'];
         // Instead, we hardcode, or extend wizardManifest for enum types if needed.
         // For now, let's rely on the direct parse from ThemeContext or a fixed list
         // From ThemeContext.tsx: export type ThemeName = 'light' | 'dark' | 'corporate' | 'midnight' | 'blueprint';

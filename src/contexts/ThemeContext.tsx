@@ -1,5 +1,3 @@
-// src/contexts/ThemeContext.tsx
-
 /**
  * @wizard
  * @name ThemeProvider
@@ -15,6 +13,9 @@ import React, { createContext, useState, useEffect, useContext, useCallback } fr
 
 export type ThemeName = 'light' | 'dark' | 'corporate' | 'midnight' | 'blueprint';
 
+// UPDATE 1: Moved availableThemes outside the component and exported it.
+export const availableThemes: ThemeName[] = ['light', 'dark', 'corporate', 'midnight', 'blueprint'];
+
 interface ThemeContextType {
   theme: ThemeName;
   availableThemes: ThemeName[];
@@ -24,8 +25,6 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const availableThemes: ThemeName[] = ['light', 'dark', 'corporate', 'midnight', 'blueprint'];
-
   const [theme, setThemeState] = useState<ThemeName>(() => {
     if (typeof window !== 'undefined') {
       const storedTheme = localStorage.getItem('theme') as ThemeName;
@@ -45,12 +44,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       return;
     }
     setThemeState(newTheme);
-    localStorage.setItem('theme', newTheme);
-  }, [availableThemes]);
+localStorage.setItem('theme', newTheme);
+  }, []); // Dependency on availableThemes removed as it's now a constant defined outside
 
   useEffect(() => {
     const root = document.documentElement;
-    root.className = '';
+    // UPDATE 2: Safer class removal.
+    // Instead of root.className = '', we remove only the theme classes.
+    availableThemes.forEach(t => root.classList.remove(t));
     root.classList.add(theme);
   }, [theme]);
 
