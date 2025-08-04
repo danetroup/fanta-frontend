@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from './Icon';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /** An optional label to display above the input field. */

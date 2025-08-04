@@ -1,6 +1,5 @@
 // src/components/ui/Accordion.tsx
 import React, { useState, useCallback } from 'react';
-import Card from './Card'; // Re-use Card for container
 
 // AccordionItem Component
 interface AccordionItemProps {

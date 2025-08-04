@@ -1,7 +1,6 @@
 // src/components/forms/FileUpload.tsx
 import React, { useState, useCallback } from 'react';
 import Button from '../ui/Button'; // Re-use our Button component
-import Input from '../ui/Input'; // Re-use our Input component
 import Card from '../ui/Card'; // Re-use our Card component
 
 interface FileUploadProps {

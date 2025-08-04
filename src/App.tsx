@@ -1,6 +1,5 @@
 // src/App.tsx
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Layout & Context
 import DefaultLayout from './layouts/DefaultLayout';
@@ -14,7 +13,7 @@ import ChartsPage from './pages/ChartsPage';
 import Styleguide from './pages/Styleguide';
 import LibraryOverviewPage from './pages/LibraryOverviewPage';
 import ScreenBuilder from './pages/ScreenBuilder';
-import LibraryReferencePage from './pages/LibraryReferencePage'; // <--- ADD THIS IMPORT
+import LibraryReferencePage from './pages/LibraryReferencePage'; 
 
 function App() {
   return (
