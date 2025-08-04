@@ -1,5 +1,6 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 // Layout & Context
 import DefaultLayout from './layouts/DefaultLayout';
