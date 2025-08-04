@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// The useScrollSpy hook remains the same, as it's for in-page navigation
+// The useScrollSpy hook remains the same
 const useScrollSpy = (ids: string[], options: IntersectionObserverInit) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
@@ -23,35 +23,43 @@ const useScrollSpy = (ids: string[], options: IntersectionObserverInit) => {
   return activeId;
 };
 
-// The generic SideNav component
 export interface NavItem {
   label: string;
-  href: string; // Can be '/page-path' or '#anchor-id'
+  href: string;
   children?: NavItem[];
 }
 
 interface SideNavProps {
   navItems: NavItem[];
+  sectionIds: string[];
   className?: string;
 }
+/**
+ * @wizard
+ * @name SideNav
+ * @description A sticky side navigation component, ideal for documentation sites or complex applications, with support for nested links and scroll-spy.
+ * @tags navigation, layout, ui, menu
+ * @props
+ * - name: navItems
+ * type: NavItem[]
+ * description: An array of navigation item objects, defining the structure of the side navigation menu.
+ * - name: sectionIds
+ * type: string[]
+ * description: An array of HTML element IDs that the scroll-spy should observe to highlight active navigation items.
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for custom styling of the side navigation container.
+ * @category navigation
+ */
 
-const SideNav: React.FC<SideNavProps> = ({ navItems, className }) => {
-  // Get IDs for scroll spying (only anchor links)
-  const anchorIds = navItems.flatMap(item => 
-    item.href.startsWith('#') ? [item.href.substring(1)] : []
-  );
-  const activeAnchorId = useScrollSpy(anchorIds, { rootMargin: '0% 0% -80% 0%' });
-  
-  // Get current location for page link active state
+const SideNav: React.FC<SideNavProps> = ({ navItems, sectionIds, className }) => {
+  const activeAnchorId = useScrollSpy(sectionIds, { rootMargin: '0% 0% -80% 0%' });
   const location = useLocation();
 
   const renderNav = (items: NavItem[], isChild = false) => (
     <ul className={isChild ? 'pl-4 mt-2 space-y-2' : 'space-y-4'}>
       {items.map(item => {
         const isPageLink = item.href.startsWith('/');
-        const isAnchorLink = item.href.startsWith('#');
-        
-        // Determine active state based on link type
         const isActive = isPageLink 
           ? location.pathname === item.href 
           : activeAnchorId === item.href.substring(1);
@@ -77,7 +85,8 @@ const SideNav: React.FC<SideNavProps> = ({ navItems, className }) => {
   );
 
   return (
-    <nav className={`sticky top-24 w-56 ${className || ''}`}>
+    // The className is updated here to allow for scrolling
+    <nav className={`sticky top-24 w-56 h-[calc(100vh-7rem)] overflow-y-auto pr-4 ${className || ''}`}>
       {renderNav(navItems)}
     </nav>
   );

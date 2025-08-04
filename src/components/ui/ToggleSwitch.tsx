@@ -17,6 +17,32 @@ interface ToggleSwitchProps {
  * A theme-aware toggle switch component, used as an alternative to a checkbox.
  * It is fully accessible and controllable.
  */
+
+/**
+ * @wizard
+ * @name ToggleSwitch
+ * @description A theme-aware toggle switch component, offering a boolean input alternative to a checkbox.
+ * @tags form, ui, toggle, switch, input
+ * @props
+ * - name: checked
+ * type: boolean
+ * description: Controls whether the toggle is in the 'on' (checked) or 'off' (unchecked) state.
+ * - name: onChange
+ * type: (checked: boolean) => void
+ * description: Callback function triggered when the toggle state changes.
+ * - name: label
+ * type: string
+ * description: An accessible text label displayed next to the toggle switch.
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for the toggle switch container.
+ * - name: disabled
+ * type: boolean
+ * description: If true, the toggle switch will be unclickable and styled as disabled.
+ * default: false
+ * @category form
+ */
+
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   checked,
   onChange,

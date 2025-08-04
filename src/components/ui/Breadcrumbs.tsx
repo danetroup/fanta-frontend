@@ -9,6 +9,30 @@ interface BreadcrumbItemProps {
   icon?: React.ReactNode; // <-- New optional icon prop
 }
 
+/**
+ * @wizard
+ * @name BreadcrumbItem
+ * @description Represents a single step or link within a `Breadcrumbs` navigation path.
+ * @tags navigation, ui, link
+ * @props
+ * - name: label
+ * type: React.ReactNode
+ * description: The text or content displayed for this breadcrumb item.
+ * - name: to
+ * type: string
+ * description: The URL path for this item to navigate to. If not provided, it's just text.
+ * - name: isCurrent
+ * type: boolean
+ * description: If true, indicates this is the current page and will not be a clickable link.
+ * - name: icon
+ * type: React.ReactNode
+ * description: An optional icon to display next to the breadcrumb label.
+ * - name: className
+ * type: string
+ * description: Additional CSS classes for custom styling of the individual item.
+ * @category navigation
+ */
+
 const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({ label, to, isCurrent, className, icon }) => { // <-- Destructure icon
   const baseStyles = 'inline-flex items-center text-sm font-medium';
   const themeStyles = isCurrent ? 'text-text' : 'text-primary hover:text-secondary';
@@ -39,6 +63,21 @@ interface BreadcrumbsProps {
   children: React.ReactElement<BreadcrumbItemProps>[];
   className?: string;
 }
+
+/**
+ * @wizard
+ * @name Breadcrumbs
+ * @description A navigation component that shows the user's current location within a hierarchy of pages.
+ * @tags navigation, ui, path
+ * @props
+ * - name: children
+ * type: React.ReactElement<BreadcrumbItemProps>[]
+ * description: A collection of `BreadcrumbItem` components representing the path.
+ * - name: className
+ * type: string
+ * description: Additional CSS classes for custom styling of the breadcrumbs container.
+ * @category navigation
+ */
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ children, className }) => {
   return (

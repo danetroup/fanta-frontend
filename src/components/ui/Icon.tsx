@@ -17,6 +17,33 @@ interface IconProps extends Omit<LucideProps, 'name'> {
  * @param className Optional additional CSS classes.
  * @param props Other props to pass to the Lucide icon component (e.g., size, color).
  */
+
+/**
+ * @wizard
+ * @name Icon
+ * @description A dynamic component that renders scalable vector icons from the Lucide library.
+ * @tags ui, graphics, svg, symbol
+ * @props
+ * - name: name
+ * type: keyof typeof dynamicIconImports
+ * description: The specific name of the Lucide icon to display (e.g., 'user', 'settings', 'check').
+ * - name: size
+ * type: number | string
+ * description: The width and height of the icon in pixels or CSS units.
+ * default: 24 (implicit from Lucide default)
+ * - name: color
+ * type: string
+ * description: The color of the icon.
+ * - name: strokeWidth
+ * type: number | string
+ * description: The width of the icon's stroke.
+ * default: 2 (implicit from Lucide default)
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for styling the SVG element.
+ * @category ui
+ */
+
 const Icon: React.FC<IconProps> = ({ name, className, ...props }) => {
   // Lazy load the icon component based on the name prop
   const LucideIcon = lazy(() => dynamicIconImports[name]());

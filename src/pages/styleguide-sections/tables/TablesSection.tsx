@@ -106,7 +106,7 @@ const TablesSection: React.FC = () => {
     <div className="space-y-8 p-6">
       <h2 className="text-3xl font-semibold mb-4 text-text">Tables & Data Grids</h2>
 
-      <Card id="tables-simple" padding="p-6">
+      <Card id="tables-simple" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Simple Paginated Table</h3>
         <p className="text-text-light mb-4">
           A basic HTML table with client-side pagination. This example uses custom renderers for the email and status columns.
@@ -117,7 +117,7 @@ const TablesSection: React.FC = () => {
         </div>
       </Card>
 
-      <Card id="tables-aggrid" padding="p-6">
+      <Card id="tables-aggrid" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">AG Grid Data Table (Advanced)</h3>
         <p className="text-text-light mb-4">
           A powerful data grid with advanced filtering. Use the quick filter for a global search or the inputs below each header for column-specific filtering.

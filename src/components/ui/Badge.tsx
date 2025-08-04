@@ -13,6 +13,24 @@ interface BadgeProps {
  * A component for displaying status indicators or labels.
  * It comes with several pre-defined color variants.
  */
+/**
+ * @wizard
+ * @name Badge
+ * @description A small, theme-aware component used for status indicators, labels, or counts.
+ * @tags ui, status, label, indicator
+ * @props
+ * - name: children
+ * type: React.ReactNode
+ * description: The content to display inside the badge (e.g., text, number).
+ * - name: variant
+ * type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning'
+ * description: Defines the color scheme of the badge.
+ * default: 'primary'
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for custom styling.
+ * @category ui
+ */
 const Badge: React.FC<BadgeProps> = ({ children, variant = 'primary', className }) => {
   const variantClasses = {
     primary: 'bg-primary/20 text-primary',

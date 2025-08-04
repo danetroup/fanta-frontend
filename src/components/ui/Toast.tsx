@@ -12,6 +12,32 @@ interface ToastProps {
   onDismiss: (id: string) => void;
 }
 
+/**
+ * @wizard
+ * @name Toast
+ * @description A single, transient notification message that appears briefly to provide feedback.
+ * @tags feedback, notification, message, ui
+ * @props
+ * - name: id
+ * type: string
+ * description: A unique identifier for this specific toast instance.
+ * - name: message
+ * type: string
+ * description: The main text content of the toast notification.
+ * - name: type
+ * type: 'success' | 'error' | 'info' | 'warning'
+ * description: Defines the visual style and semantic meaning of the toast.
+ * default: 'info'
+ * - name: duration
+ * type: number
+ * description: How long the toast should remain visible in milliseconds. Set to `0` for a sticky toast.
+ * default: 3000
+ * - name: onDismiss
+ * type: (id: string) => void
+ * description: Callback function triggered when the toast is dismissed (either automatically or by user).
+ * @category feedback
+ */
+
 const Toast: React.FC<ToastProps> = ({ id, message, type = 'info', duration = 3000, onDismiss }) => {
   const [isVisible, setIsVisible] = useState(true);
 

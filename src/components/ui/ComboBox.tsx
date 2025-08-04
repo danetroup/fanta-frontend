@@ -15,6 +15,39 @@ interface ComboBoxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>
   placeholder?: string;
 }
 
+/**
+ * @wizard
+ * @name ComboBox
+ * @description A text input with an integrated dropdown list of selectable options, allowing both typing and selection.
+ * @tags form, input, select, dropdown, autocomplete, ui
+ * @props
+ * - name: options
+ * type: { value: string | number; label: string; }[]
+ * description: An array of objects defining the selectable options, each with a `value` and `label`.
+ * - name: label
+ * type: string
+ * description: An optional label displayed above the ComboBox input field.
+ * - name: value
+ * type: string | number | null
+ * description: The currently selected option's `value`. Can be `null` if no option is selected.
+ * - name: onSelect
+ * type: (selectedValue: string | number | null, selectedLabel: string | null) => void
+ * description: Callback function triggered when an option is selected from the dropdown.
+ * - name: placeholder
+ * type: string
+ * description: The placeholder text displayed when the input is empty.
+ * - name: id
+ * type: string
+ * description: A unique HTML `id` for the input element. Automatically generated if not provided.
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for the ComboBox container.
+ * - name: name
+ * type: string
+ * description: The `name` attribute for the underlying input element.
+ * @category form
+ */
+
 const ComboBox: React.FC<ComboBoxProps> = ({
   options,
   label,

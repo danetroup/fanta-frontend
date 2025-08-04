@@ -20,6 +20,60 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * A theme-aware text input component with support for labels, helper text,
  * and validation states.
  */
+
+/**
+ * @wizard
+ * @name Input
+ * @description A versatile text input field with support for labels, helper text, error states, and required indicators.
+ * @tags form, ui, text-input
+ * @props
+ * - name: type
+ * type: React.InputHTMLAttributes<HTMLInputElement>['type']
+ * description: The HTML input type (e.g., 'text', 'email', 'password', 'number').
+ * default: 'text' (implicit from HTML default)
+ * - name: label
+ * type: string
+ * description: An optional label displayed above the input field.
+ * - name: helperText
+ * type: string
+ * description: A short message displayed below the input, often for hints or errors.
+ * - name: error
+ * type: boolean
+ * description: If true, the input will be styled to indicate an invalid or error state.
+ * default: false
+ * - name: required
+ * type: boolean
+ * description: If true, displays a required indicator (*) next to the label and enforces HTML5 validation.
+ * default: false
+ * - name: showOptionalLabel
+ * type: boolean
+ * description: If true, displays an "(optional)" indicator next to the label when not required.
+ * default: false
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for custom styling of the input element itself.
+ * - name: containerClassName
+ * type: string
+ * description: Optional additional CSS classes for the wrapper div around the label, input, and helper text.
+ * - name: id
+ * type: string
+ * description: A unique ID for the input, useful for associating labels.
+ * - name: name
+ * type: string
+ * description: The `name` attribute of the input, used for form submission.
+ * - name: value
+ * type: string | number | readonly string[]
+ * description: The current value of the input field.
+ * - name: onChange
+ * type: (event: React.ChangeEvent<HTMLInputElement>) => void
+ * description: Callback function triggered when the input's value changes.
+ * - name: placeholder
+ * type: string
+ * description: The placeholder text displayed when the input is empty.
+ * @category form
+ */
+
+
 const Input: React.FC<InputProps> = ({
   label,
   helperText,

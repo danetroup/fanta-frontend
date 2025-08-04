@@ -43,7 +43,7 @@ const IconsSection: React.FC = () => {
         This project uses the <a href="https://lucide.dev/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lucide</a> icon library. Use the generic `Icon` component to display any icon by name. This method ensures only the used icons are bundled, optimizing performance.
       </p>
 
-      <Card id="icons-usage"  padding="p-6">
+      <Card id="icons-usage"  className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Usage</h3>
         <p className="text-text-light mb-4">
           Import the `Icon` component and provide the `name` of the icon you wish to display. You can also pass any other props that the Lucide icons accept, such as `size` or `className`.
@@ -58,7 +58,7 @@ const IconsSection: React.FC = () => {
         </div>
       </Card>
 
-      <Card id="icons-gallery" padding="p-6">
+      <Card id="icons-gallery" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Icon Gallery</h3>
         <p className="text-text-light mb-6">
           This is a small sample of the icons available. For a full list, please visit the official Lucide documentation.

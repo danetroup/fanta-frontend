@@ -108,17 +108,18 @@ const Styleguide: React.FC = () => {
         </aside>
         
         <main className="flex-1 space-y-20">
-          <section id="colors"><ColorsSection /></section>
-          <section id="layout"><LayoutSection /></section>
-          <section id="templates"><TemplatesSection /></section>
-          <section id="elements"><ElementsSection /></section>
-          <section id="forms"><FormsSection /></section>
-          <section id="navigation"><NavigationSection /></section>
-          <section id="tables"><TablesSection /></section>
-          <section id="charts"><ChartsSection /></section>
-          <section id="feedback"><FeedbackSection /></section>
-          <section id="utilities"><UtilitiesSection /></section>
-          <section id="icons"><IconsSection /></section>
+          {/* Add scroll-mt-20 to each section */}
+          <section id="colors" className="scroll-mt-20"><ColorsSection /></section>
+          <section id="layout" className="scroll-mt-20"><LayoutSection /></section>
+          <section id="templates" className="scroll-mt-20"><TemplatesSection /></section>
+          <section id="elements" className="scroll-mt-20"><ElementsSection /></section>
+          <section id="forms" className="scroll-mt-20"><FormsSection /></section>
+          <section id="navigation" className="scroll-mt-20"><NavigationSection /></section>
+          <section id="tables" className="scroll-mt-20"><TablesSection /></section>
+          <section id="charts" className="scroll-mt-20"><ChartsSection /></section>
+          <section id="feedback" className="scroll-mt-20"><FeedbackSection /></section>
+          <section id="utilities" className="scroll-mt-20"><UtilitiesSection /></section>
+          <section id="icons" className="scroll-mt-20"><IconsSection /></section>
         </main>
       </div>
     </div>

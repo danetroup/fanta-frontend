@@ -21,6 +21,13 @@ interface ToastContextType {
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 // Custom hook to consume the ToastContext
+/**
+ * @wizard
+ * @name useToast
+ * @description A React hook to easily add and dismiss toast notifications anywhere within a `ToastProvider`.
+ * @tags hook, feedback, notification
+ * @category feedback
+ */
 export const useToast = () => {
   const context = useContext(ToastContext);
   if (context === undefined) {
@@ -30,6 +37,17 @@ export const useToast = () => {
 };
 
 // ToastProvider component
+/**
+ * @wizard
+ * @name ToastProvider
+ * @description Provides a context and a hook (`useToast`) for displaying transient, non-disruptive notifications (toasts) across the application.
+ * @tags feedback, notification, context, utility
+ * @props
+ * - name: children
+ * type: React.ReactNode
+ * description: The React nodes that will have access to the `useToast` hook. Typically wraps the entire application.
+ * @category feedback
+ */
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 

@@ -78,6 +78,13 @@ const ActivityItem: React.FC<{ item: ActivityItemData; isLast: boolean }> = ({ i
 
 
 // --- Main ActivityFeed Component ---
+/**
+ * @wizard
+ * @name ActivityFeed
+ * @description Displays a chronological list of recent activities or changes, typically with a timeline indicator.
+ * @tags templates, patterns, feed, timeline, data-display
+ * @category templates-patterns
+ */
 const ActivityFeed: React.FC = () => {
   return (
     <Card padding="p-6">

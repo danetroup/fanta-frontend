@@ -24,7 +24,7 @@ const TemplatesSection: React.FC = () => {
       </p>
 
       {/* Page Layout Example */}
-      <Card id="template-header" padding="p-0">
+      <Card id="template-header" className="scroll-mt-20" padding="p-0">
         <div className="p-6">
           <PageHeader
             title="Standard Page Template"
@@ -55,7 +55,7 @@ const TemplatesSection: React.FC = () => {
       </Card>
 
       {/* NEW Responsive Layout Example */}
-      <Card id="template-responive" padding="p-0">
+      <Card id="template-responive" className="scroll-mt-20" padding="p-0">
         <div className="p-6">
             <PageHeader
                 title="Responsive Two-Column Template"

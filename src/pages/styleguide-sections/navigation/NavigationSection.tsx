@@ -30,7 +30,7 @@ const NavigationSection: React.FC = () => {
       <h2 className="text-3xl font-semibold mb-4 text-text">Navigation Components</h2>
       <h1 className="text-red-200">Does this turn red?</h1>
 
-      <Card id="navigation-stepper" padding="p-6">
+      <Card id="navigation-stepper" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Stepper</h3>
         <p className="text-text-light mb-6">
           Guide users through a multi-step process with the Stepper component.
@@ -42,7 +42,7 @@ const NavigationSection: React.FC = () => {
         </div>
       </Card>
 
-      <Card id="navigation-tabs" padding="p-6">
+      <Card id="navigation-tabs" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Tabs with Icons</h3>
         {/* --- Updated Tabs Example --- */}
         <Tabs defaultActiveTab="tab1">
@@ -60,7 +60,7 @@ const NavigationSection: React.FC = () => {
         </Tabs>
       </Card>
 
-      <Card id="navigation-menus" padding="p-6">
+      <Card id="navigation-menus" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Menus</h3>
         <div className="flex flex-wrap items-center gap-8">
           <Menu
@@ -95,7 +95,7 @@ const NavigationSection: React.FC = () => {
         </div>
       </Card>
 
-      <Card id="navigation-breadcrumbs" padding="p-6">
+      <Card id="navigation-breadcrumbs" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Breadcrumbs with Icons</h3>
         <div className="space-y-4">
           {/* --- Updated Breadcrumbs Example --- */}

@@ -27,6 +27,28 @@ interface ChartWithTableProps {
  * A wrapper component that displays a chart and provides a menu option
  * to view the chart's underlying data in a table within a drawer.
  */
+
+/**
+ * @wizard
+ * @name ChartWithTable
+ * @description A wrapper component that combines a chart with an option to view its underlying data in a table within a drawer.
+ * @tags templates, charts, data-display, pattern, dashboard
+ * @props
+ * - name: title
+ * type: string
+ * description: The main title for the chart and the associated data view.
+ * - name: children
+ * type: React.ReactNode
+ * description: The chart component itself (e.g., `<BarChart />` or `<LineChart />`).
+ * - name: data
+ * type: any[]
+ * description: The raw data used by the chart, which will also populate the table in the drawer.
+ * - name: tableHeaders
+ * type: TableHeader[]
+ * description: The header configuration for the data table displayed in the drawer.
+ * @category templates-patterns
+ */
+
 const ChartWithTable: React.FC<ChartWithTableProps> = ({ title, children, data, tableHeaders }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 

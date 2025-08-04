@@ -24,7 +24,7 @@ const FeedbackSection: React.FC = () => {
       </p>
 
       {/* Alerts */}
-      <Card id="feedback-alerts" padding="p-6">
+      <Card id="feedback-alerts" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Alerts</h3>
         <div className="space-y-4">
           <Alert variant="info" title="Informational Message">
@@ -43,7 +43,7 @@ const FeedbackSection: React.FC = () => {
       </Card>
 
       {/* Tooltips */}
-      <Card id="feedback-tooltip" padding="p-6">
+      <Card id="feedback-tooltip" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Tooltips (using Tippy.js)</h3>
         <div className="flex flex-wrap items-center gap-8">
           <TippyTooltip content="This is a top tooltip." placement="top">
@@ -56,7 +56,7 @@ const FeedbackSection: React.FC = () => {
       </Card>
 
       {/* Toast Notifications */}
-      <Card id="feedback-toast" padding="p-6">
+      <Card id="feedback-toast" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Toast Notifications</h3>
         <div className="flex flex-wrap items-center gap-4">
           <Button onClick={() => addToast('Success message!', 'success')}>Show Success Toast</Button>
@@ -65,7 +65,7 @@ const FeedbackSection: React.FC = () => {
       </Card>
 
       {/* Empty State */}
-      <Card id="feedback-empty" padding="p-6">
+      <Card id="feedback-empty" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Empty State / No Data</h3>
         <div className="space-y-8">
           <EmptyState

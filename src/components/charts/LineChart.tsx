@@ -10,6 +10,27 @@ interface LineChartProps {
   title?: string;
 }
 
+/**
+ * @wizard
+ * @name LineChart
+ * @description A theme-aware line chart component powered by Recharts, for visualizing trends over time or categories.
+ * @tags charts, data-visualization, rechart
+ * @props
+ * - name: data
+ * type: any[]
+ * description: The dataset for the chart. Each object in the array represents a point on the chart.
+ * - name: dataKeyX
+ * type: string
+ * description: The key from your data objects to be used for the X-axis (e.g., 'month', 'category').
+ * - name: lineKeys
+ * type: { key: string; color: string }[]
+ * description: An array of objects, each specifying a data key for a line and its color (e.g., `[{ key: 'sales', color: '#8884d8' }]`).
+ * - name: title
+ * type: string
+ * description: An optional title to display above the chart.
+ * @category charts
+ */
+
 const LineChart: React.FC<LineChartProps> = ({ data, dataKeyX, lineKeys, title }) => {
   const { theme } = useTheme();
 

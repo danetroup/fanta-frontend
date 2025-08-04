@@ -65,6 +65,38 @@ interface FormTemplateProps {
   className?: string; // For the outer form container
 }
 
+/**
+ * @wizard
+ * @name FormTemplate
+ * @description A flexible component for rapidly building forms based on a declarative array of field configurations.
+ * @tags templates, form, structure, pattern
+ * @props
+ * - name: title
+ * type: string
+ * description: The main title displayed at the top of the form.
+ * - name: fields
+ * type: FormField[]
+ * description: An array of objects, where each object defines a form input, select, checkbox, or radio field.
+ * - name: onSubmit
+ * type: (formData: Record<string, any>) => void
+ * description: Callback function triggered when the form is submitted, providing the current form data.
+ * - name: onCancel
+ * type: () => void
+ * description: Optional callback function triggered when the 'Cancel' button is clicked.
+ * - name: submitButtonText
+ * type: string
+ * description: The text displayed on the primary submit button.
+ * default: 'Submit'
+ * - name: cancelButtonText
+ * type: string
+ * description: The text displayed on the cancel button.
+ * default: 'Cancel'
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for the outer form container.
+ * @category templates-patterns
+ */
+
 const FormTemplate: React.FC<FormTemplateProps> = ({
   title,
   fields,

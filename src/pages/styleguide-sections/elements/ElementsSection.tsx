@@ -30,7 +30,7 @@ const mockActivity = [
 
 // Memoize the sections that don't need to re-render.
 const AvatarsSection = memo(() => (
-  <Card id="elements-avatars" padding="p-6">
+  <Card id="elements-avatars" className="scroll-mt-20" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Avatars</h3>
     <div className="flex flex-wrap items-center gap-4">
       <Avatar name="Dane Troup" size="sm" />
@@ -42,7 +42,7 @@ const AvatarsSection = memo(() => (
 ));
 
 const BadgesSection = memo(() => (
-  <Card id="elements-badges" padding="p-6">
+  <Card id="elements-badges" className="scroll-mt-20" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Badges</h3>
     <div className="flex flex-wrap items-center gap-4">
       <Badge variant="primary">Primary</Badge>
@@ -55,7 +55,7 @@ const BadgesSection = memo(() => (
 ));
 
 const StatCardsSection = memo(() => (
-  <Card id="elements-stats" padding="p-6">
+  <Card id="elements-stats" className="scroll-mt-20" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Stat Cards</h3>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <StatCard
@@ -84,7 +84,7 @@ const StatCardsSection = memo(() => (
 
 // --- New Activity Feed Section ---
 const ActivityFeedSection = memo(() => (
-  <Card id="elements-activity" padding="p-6">
+  <Card id="elements-activity" className="scroll-mt-20" padding="p-6">
     <h3 className="text-2xl font-semibold mb-4 text-text">Activity Feed</h3>
     <p className="text-muted-foreground mb-6">
       Displays a chronological list of events or changes.
@@ -115,7 +115,7 @@ const ElementsSection: React.FC = () => {
       <ActivityFeedSection /> {/* <-- New section added here */}
 
       {/* Toggle Switches Section - This is the only part that will re-render on toggle */}
-      <Card id="elements-toggle" padding="p-6">
+      <Card id="elements-toggle" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-4 text-text">Toggle Switches</h3>
         <div className="flex flex-col space-y-4">
           <ToggleSwitch

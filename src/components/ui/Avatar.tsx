@@ -15,6 +15,27 @@ interface AvatarProps {
  * A component for displaying a user's avatar. It shows an image if a `src`
  * is provided, otherwise it falls back to the user's initials.
  */
+/**
+ * @wizard
+ * @name Avatar
+ * @description Displays a user's profile picture or initials as a fallback, with different size options.
+ * @tags ui, profile, user
+ * @props
+ * - name: name
+ * type: string
+ * description: The name of the user, used for generating initials if no `src` is provided.
+ * - name: src
+ * type: string
+ * description: The URL of the image to display as the avatar. If not provided, initials are shown.
+ * - name: size
+ * type: 'sm' | 'md' | 'lg'
+ * description: Controls the dimensions and font size of the avatar.
+ * default: 'md'
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes for custom styling.
+ * @category ui
+ */
 const Avatar: React.FC<AvatarProps> = ({ src, name, size = 'md', className }) => {
   const getInitials = (name: string) => {
     const names = name.split(' ');

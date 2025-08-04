@@ -1,4 +1,32 @@
 // src/hooks/useDataFetch.ts
+
+/**
+ * @wizard
+ * @name useDataFetch
+ * @description A custom React hook for simulating asynchronous data fetching from mock sources, managing loading, error, and data states.
+ * @tags hook, data, utility, fetch, mock
+ * @props
+ * - name: initialData
+ * type: T | null
+ * description: The initial data state before fetching begins.
+ * - name: mockDataSource
+ * type: T
+ * description: The mock data object or array to be "fetched" by this hook.
+ * @returns
+ * - name: data
+ * type: T | null
+ * description: The fetched data, or null if not yet loaded or an error occurred.
+ * - name: loading
+ * type: boolean
+ * description: True if data is currently being fetched, false otherwise.
+ * - name: error
+ * type: string | null
+ * description: An error message if the fetch failed, or null if successful.
+ * - name: fetchData
+ * type: (params?: any) => Promise<void>
+ * description: A function to manually trigger a re-fetch of the data.
+ * @category utility
+ */
 import { useState, useEffect, useCallback } from 'react';
 
 interface UseDataFetchResult<T> {

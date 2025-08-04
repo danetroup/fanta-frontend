@@ -70,7 +70,7 @@ const ColorsPage: React.FC = () => {
 
   return (
     <div className="space-y-8 p-6">
-      <Card id="colors-theme" padding="p-6">
+      <Card id="colors-theme" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-2 text-text">Themed Color Palette</h3>
         <p className="text-muted-foreground mb-8">
           These colors are defined by the current theme and will change dynamically.
@@ -86,7 +86,7 @@ const ColorsPage: React.FC = () => {
         </div>
       </Card>
       
-      <Card id="colors-tailwind" padding="p-6">
+      <Card id="colors-tailwind" className="scroll-mt-20" padding="p-6">
         <h3 className="text-2xl font-semibold mb-2 text-text">Default Tailwind Palette</h3>
         <p className="text-muted-foreground mb-8">
           A summary of the static default colors built into Tailwind CSS. Each color typically comes in 10 shades (e.g., `slate-50` to `slate-900`).

@@ -36,6 +36,27 @@ interface ButtonGroupChildProps {
  * It can function as a simple visual container or as a stateful
  * segmented control (radio group) when `value` and `onValueChange` props are provided.
  */
+/**
+ * @wizard
+ * @name ButtonGroup
+ * @description Groups multiple Button components visually and can function as a segmented control (radio group).
+ * @tags ui, form, action, group
+ * @props
+ * - name: children
+ * type: React.ReactNode
+ * description: The `Button` components to be grouped together.
+ * - name: className
+ * type: string
+ * description: Optional additional CSS classes to apply to the container.
+ * - name: value
+ * type: string | number
+ * description: For segmented controls, the value of the currently selected button.
+ * - name: onValueChange
+ * type: (value: string | number) => void
+ * description: Callback function for segmented controls, called when the selected value changes.
+ * @category form
+ */
+
 const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, className, value, onValueChange }) => {
   const childCount = React.Children.count(children);
   const isRadioGroup = value !== undefined && onValueChange !== undefined;

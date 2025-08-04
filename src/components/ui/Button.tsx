@@ -61,6 +61,48 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  * A versatile button component with multiple variants, sizes, and icon support.
  * It's designed to be flexible and theme-aware.
  */
+/**
+ * @wizard
+ * @name Button
+ * @description A versatile component for user interactions, supporting various styles, sizes, and states.
+ * @tags ui, action, form, clickable
+ * @props
+ * - name: children
+ * type: React.ReactNode
+ * description: The content displayed inside the button (e.g., text, icon).
+ * - name: variant
+ * type: 'primary' | 'secondary' | 'danger' | 'outline' | 'accent' | 'ghost' | 'link'
+ * description: Defines the visual style and importance of the button.
+ * default: 'primary'
+ * - name: size
+ * type: 'sm' | 'md' | 'lg'
+ * description: Controls the padding and font size of the button.
+ * default: 'md'
+ * - name: iconBefore
+ * type: React.ReactNode
+ * description: An optional icon to display before the button's text content.
+ * - name: iconAfter
+ * type: React.ReactNode
+ * description: An optional icon to display after the button's text content.
+ * - name: loading
+ * type: boolean
+ * description: If true, displays a loading spinner and disables the button.
+ * default: false
+ * - name: fullWidth
+ * type: boolean
+ * description: If true, the button will take up the full width of its parent container.
+ * default: false
+ * - name: className
+ * type: string
+ * description: Additional CSS classes for custom styling.
+ * - name: onClick
+ * type: () => void
+ * description: Function to call when the button is clicked.
+ * - name: disabled
+ * type: boolean
+ * description: If true, the button is unclickable and styled as disabled.
+ * @category ui
+ */
 const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'primary',

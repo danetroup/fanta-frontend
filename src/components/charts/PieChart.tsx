@@ -17,6 +17,28 @@ interface PieChartProps {
  * A theme-aware Pie Chart component that wraps the Recharts library.
  * It automatically applies theme colors to the chart segments.
  */
+
+/**
+ * @wizard
+ * @name PieChart
+ * @description A theme-aware pie chart component powered by Recharts, for showing proportional relationships of parts to a whole.
+ * @tags charts, data-visualization, rechart
+ * @props
+ * - name: data
+ * type: any[]
+ * description: The dataset for the chart. Each object in the array represents a slice of the pie.
+ * - name: dataKey
+ * type: string
+ * description: The key from the data objects that specifies the numerical value of each slice.
+ * - name: nameKey
+ * type: string
+ * description: The key from the data objects that specifies the name or label of each slice.
+ * - name: title
+ * type: string
+ * description: An optional title to display above the chart.
+ * @category charts
+ */
+
 const PieChart: React.FC<PieChartProps> = ({ data, dataKey, nameKey, title }) => {
   const { theme } = useTheme();
 

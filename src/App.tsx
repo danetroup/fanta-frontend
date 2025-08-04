@@ -1,10 +1,11 @@
 // src/App.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 // Layout & Context
 import DefaultLayout from './layouts/DefaultLayout';
-import { ToastProvider } from './components/ui/ToastContainer'; // <--- ADD THIS IMPORT
+import { ToastProvider } from './components/ui/ToastContainer';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Pages
 import Dashboard from './pages/Dashboard';
@@ -12,21 +13,27 @@ import DataGridPage from './pages/DataGridPage';
 import ChartsPage from './pages/ChartsPage';
 import Styleguide from './pages/Styleguide';
 import LibraryOverviewPage from './pages/LibraryOverviewPage';
+import ScreenBuilder from './pages/ScreenBuilder';
+import LibraryReferencePage from './pages/LibraryReferencePage'; // <--- ADD THIS IMPORT
 
 function App() {
   return (
     <BrowserRouter>
-      <ToastProvider> {/* <--- WRAP DefaultLayout WITH ToastProvider */}
-        <DefaultLayout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/data-grid" element={<DataGridPage />} />
-            <Route path="/charts" element={<ChartsPage />} />
-            <Route path="/styleguide" element={<Styleguide />} />
-            <Route path="/libraries" element={<LibraryOverviewPage />} />
-          </Routes>
-        </DefaultLayout>
-      </ToastProvider>
+      <ThemeProvider>
+        <ToastProvider>
+          <DefaultLayout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/data-grid" element={<DataGridPage />} />
+              <Route path="/charts" element={<ChartsPage />} />
+              <Route path="/styleguide" element={<Styleguide />} />
+              <Route path="/libraries" element={<LibraryOverviewPage />} />
+              <Route path="/screen-builder" element={<ScreenBuilder />} />
+              <Route path="/library-reference" element={<LibraryReferencePage />} /> {/* <--- ADD THIS ROUTE */}
+            </Routes>
+          </DefaultLayout>
+        </ToastProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

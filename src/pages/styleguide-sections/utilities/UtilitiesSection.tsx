@@ -100,7 +100,7 @@ const UtilitiesSection: React.FC = () => {
         A quick reference for some of the most common utility classes available in Tailwind. For a full list, always refer to the official Tailwind CSS documentation.
       </p>
 
-      <div id="utilities-spacing">
+      <div id="utilities-spacing" className="scroll-mt-20">
         <UtilityClassReference 
         title="Spacing (Padding & Margin)" 
         classes={spacingClasses}
@@ -109,7 +109,7 @@ const UtilitiesSection: React.FC = () => {
       </div>
 
 
-      <div id="utilities-flexbox">
+      <div id="utilities-flexbox" className="scroll-mt-20">
         <UtilityClassReference 
         title="Flexbox" 
         classes={flexboxClasses}
@@ -118,7 +118,7 @@ const UtilitiesSection: React.FC = () => {
       </div>
       
       {/* Moved Layout Utilities Section */}
-      <Card id="utilities-layout" padding="p-6" className="mb-8">
+      <Card id="utilities-layout" padding="p-6" className="mb-8 scroll-mt-20">
         <h3 className="text-2xl font-semibold mb-2 text-text">Layout (Display, Sizing, Position)</h3>
         <p className="text-text-light mb-6">
           Use these utility classes to control the display, sizing, and positioning of elements. These are fundamental for building any UI structure.
@@ -147,13 +147,13 @@ const UtilitiesSection: React.FC = () => {
         </div>
       </Card>
 
-      <div id="utilities-typography">
+      <div id="utilities-typography" className="scroll-mt-20">
         <UtilityClassReference title="Typography" classes={typographyClasses} />
         </div>
-      <div id="utilities-borders">
+      <div id="utilities-borders" className="scroll-mt-20">
         <UtilityClassReference title="Borders & Rounded Corners" classes={borderClasses} />
         </div>
-      <div id="utilities-shadows">
+      <div id="utilities-shadows" className="scroll-mt-20">
         <UtilityClassReference title="Shadows" classes={shadowClasses} />
         </div>
     </div>

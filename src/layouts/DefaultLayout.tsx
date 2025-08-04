@@ -1,18 +1,19 @@
+// src/layouts/DefaultLayout.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme, type ThemeName } from '../contexts';
-import { Menu, MenuItem } from '../components/ui/Menu';
-import Button from '../components/ui/Button';
-import Icon from '../components/ui/Icon';
+import { useTheme, type ThemeName } from '../contexts'; //
+import { Menu, MenuItem } from '../components/ui/Menu'; //
+import Button from '../components/ui/Button'; //
+import Icon from '../components/ui/Icon'; //
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
-  const { theme, availableThemes, setTheme } = useTheme();
+  const { theme, availableThemes, setTheme } = useTheme(); //
 
-  const formatThemeName = (t: ThemeName) => t.charAt(0).toUpperCase() + t.slice(1);
+  const formatThemeName = (t: ThemeName) => t.charAt(0).toUpperCase() + t.slice(1); //
 
   return (
     <div className="min-h-screen w-full flex flex-col bg-background text-text">
@@ -34,6 +35,12 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
           </Link>
           <Link to="/libraries" className="text-primary-foreground hover:text-secondary transition-colors duration-200">
             Libraries
+          </Link>
+          <Link to="/screen-builder" className="text-primary-foreground hover:text-secondary transition-colors duration-200">
+            Screen Builder
+          </Link>
+          <Link to="/library-reference" className="text-primary-foreground hover:text-secondary transition-colors duration-200"> {/* <--- ADD THIS NEW LINK */}
+            Reference
           </Link>
           <div className="flex items-center space-x-2 ml-4">
             <Menu
