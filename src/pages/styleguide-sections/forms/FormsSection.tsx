@@ -310,7 +310,7 @@ const FormsSection: React.FC = () => {
             label="Combo Box (Autocomplete)"
             options={fruitOptions}
             value={selectedFruit}
-            onSelect={(value, label) => {
+            onOptionSelect={(value, label) => { // <-- Change 'onSelect' to 'onOptionSelect'
               setSelectedFruit(value);
               addToast(`Selected: ${label} (Value: ${value})`, 'info');
             }}

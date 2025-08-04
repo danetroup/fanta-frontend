@@ -1,9 +1,7 @@
 import React from 'react';
-import Card from './Card'; // Assuming path to your Card component
+import Card from './Card';
 
 // --- Helper Function ---
-// A simple function to format dates into relative time strings.
-// For a production app, a library like `date-fns` is recommended.
 const formatRelativeTime = (date: Date): string => {
   const now = new Date();
   const seconds = Math.round((now.getTime() - date.getTime()) / 1000);
@@ -18,42 +16,13 @@ const formatRelativeTime = (date: Date): string => {
   return `${days} days ago`;
 };
 
-// --- Data Structure & Mock Data ---
+// --- Data Structure ---
 interface ActivityItemData {
   id: number;
   author: string;
   action: string;
   timestamp: Date;
 }
-
-// Replace this with your actual data
-const mockActivity: ActivityItemData[] = [
-  { 
-    id: 1, 
-    author: 'Olivia Rhye', 
-    action: 'Upcoming deprecation of GPU machine type in...',
-    timestamp: new Date(Date.now() - 20 * 60 * 60 * 1000) // 20 hours ago
-  },
-  { 
-    id: 2, 
-    author: 'Phoenix Baker', 
-    action: 'Update on GitHub Copilot consumptive billing for...',
-    timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) // Yesterday
-  },
-  { 
-    id: 3, 
-    author: 'Lana Steiner', 
-    action: 'GitHub Actions: New APIs and windows-latest migrati...',
-    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-  },
-  { 
-    id: 4, 
-    author: 'Drew Cano', 
-    action: 'Copilot Chat unlocks new repository management skills',
-    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) // 2 days ago
-  },
-];
-
 
 // --- Sub-Component for each item in the feed ---
 const ActivityItem: React.FC<{ item: ActivityItemData; isLast: boolean }> = ({ item, isLast }) => {
@@ -76,8 +45,14 @@ const ActivityItem: React.FC<{ item: ActivityItemData; isLast: boolean }> = ({ i
   );
 };
 
+// --- Main ActivityFeed Component (UPDATED) ---
 
-// --- Main ActivityFeed Component ---
+// Define the props the component will accept
+interface ActivityFeedProps {
+  items: ActivityItemData[];
+  title: string;
+}
+
 /**
  * @wizard
  * @name ActivityFeed
@@ -85,16 +60,18 @@ const ActivityItem: React.FC<{ item: ActivityItemData; isLast: boolean }> = ({ i
  * @tags templates, patterns, feed, timeline, data-display
  * @category templates-patterns
  */
-const ActivityFeed: React.FC = () => {
+// Update the component to receive and use props
+const ActivityFeed: React.FC<ActivityFeedProps> = ({ items, title }) => {
   return (
     <Card padding="p-6">
-      <h3 className="text-l font-bold text-text mb-4">Latest changes</h3>
+      <h3 className="text-xl font-bold text-text mb-4">{title}</h3>
       <div>
-        {mockActivity.map((item, index) => (
+        {/* Use the 'items' prop instead of the hardcoded mock data */}
+        {items.map((item, index) => (
           <ActivityItem 
             key={item.id} 
             item={item} 
-            isLast={index === mockActivity.length - 1}
+            isLast={index === items.length - 1}
           />
         ))}
       </div>

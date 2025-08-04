@@ -2,7 +2,7 @@ import React from 'react';
 import BarChart from '../../../components/charts/BarChart';
 import LineChart from '../../../components/charts/LineChart';
 import PieChart from '../../../components/charts/PieChart';
-import ChartWithTable from '../../../components/charts/ChartWithtable'; // <-- Corrected casing
+import ChartWithTable from '../../../components/charts/ChartWithTable'; // <-- Corrected casing
 import { mockChartData, mockPieChartData } from '../../../data/mockData';
 
 const ChartsSection: React.FC = () => {

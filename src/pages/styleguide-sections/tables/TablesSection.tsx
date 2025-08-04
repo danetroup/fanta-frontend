@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import Card from '../../../components/ui/Card';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
-import Select from '../../../components/ui/Select';
 import Table from '../../../components/data/Table';
 import Pagination from '../../../components/ui/Pagination';
 import DataTable from '../../../components/data/DataTable';
@@ -58,7 +57,7 @@ const TablesSection: React.FC = () => {
   const totalSimplePages = Math.ceil(mockLargeTableData.length / ITEMS_PER_PAGE);
 
   // --- States for AG Grid DataTable ---
-  const { data: fetchedTableData, loading: tableLoading, error: tableError, fetchData } = useDataFetch(null, mockTableData);
+  const { data: fetchedTableData, loading: tableLoading, error: tableError } = useDataFetch(null, mockTableData);
   const [filterText, setFilterText] = useState<string>('');
   const [gridApi, setGridApi] = useState<any>(null);
 

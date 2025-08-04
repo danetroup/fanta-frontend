@@ -1,5 +1,5 @@
 // src/components/ui/ToastContainer.tsx
-import React, { useState, useEffect, useCallback, createContext, useContext } from 'react';
+import React, { useState, useCallback, createContext, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import Toast, { type ToastType } from './Toast'; // <--- ADD 'type' keyword
 

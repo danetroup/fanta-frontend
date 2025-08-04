@@ -50,7 +50,7 @@ const useDataFetch = <T>(initialData: T | null, mockDataSource: T): UseDataFetch
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = useCallback(async (params?: any) => {
+  const fetchData = useCallback(async (_params?: any) => {
     setLoading(true);
     setError(null);
     try {

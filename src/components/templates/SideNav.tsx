@@ -1,22 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// The useScrollSpy hook remains the same
+// The useScrollSpy hook with a more explicit type guard
 const useScrollSpy = (ids: string[], options: IntersectionObserverInit) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const elements = ids.map(id => document.getElementById(id)).filter(el => el);
-    if (observer.current) observer.current.disconnect();
+    // The filter now uses a type guard `(el): el is HTMLElement` to assure TypeScript
+    const elements = ids
+      .map(id => document.getElementById(id))
+      .filter((el): el is HTMLElement => el != null);
+
+    if (observer.current) {
+      observer.current.disconnect();
+    }
     
     observer.current = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) setActiveId(entry.target.id);
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.id);
+        }
       });
     }, options);
     
     elements.forEach(el => observer.current?.observe(el));
+    
     return () => observer.current?.disconnect();
   }, [ids, options]);
 
@@ -34,6 +43,7 @@ interface SideNavProps {
   sectionIds: string[];
   className?: string;
 }
+
 /**
  * @wizard
  * @name SideNav
@@ -85,7 +95,6 @@ const SideNav: React.FC<SideNavProps> = ({ navItems, sectionIds, className }) =>
   );
 
   return (
-    // The className is updated here to allow for scrolling
     <nav className={`sticky top-24 w-56 h-[calc(100vh-7rem)] overflow-y-auto pr-4 ${className || ''}`}>
       {renderNav(navItems)}
     </nav>
