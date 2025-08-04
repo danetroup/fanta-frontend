@@ -1,17 +1,18 @@
 // src/components/ui/ComboBox.tsx
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import Input from './Input'; // Re-use our existing Input component
+import Input from './Input';
 
 interface ComboBoxOption {
   value: string | number;
   label: string;
 }
 
+// Renamed onSelect to onOptionSelect to avoid conflict with standard input attributes
 interface ComboBoxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
   options: ComboBoxOption[];
   label?: string;
-  value?: string | number | null; // Controlled value for the selected option's value
-  onSelect?: (selectedValue: string | number | null, selectedLabel: string | null) => void;
+  value?: string | number | null;
+  onOptionSelect?: (selectedValue: string | number | null, selectedLabel: string | null) => void;
   placeholder?: string;
 }
 
@@ -30,29 +31,19 @@ interface ComboBoxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>
  * - name: value
  * type: string | number | null
  * description: The currently selected option's `value`. Can be `null` if no option is selected.
- * - name: onSelect
+ * - name: onOptionSelect  // <-- Updated JSDoc
  * type: (selectedValue: string | number | null, selectedLabel: string | null) => void
  * description: Callback function triggered when an option is selected from the dropdown.
  * - name: placeholder
  * type: string
  * description: The placeholder text displayed when the input is empty.
- * - name: id
- * type: string
- * description: A unique HTML `id` for the input element. Automatically generated if not provided.
- * - name: className
- * type: string
- * description: Optional additional CSS classes for the ComboBox container.
- * - name: name
- * type: string
- * description: The `name` attribute for the underlying input element.
  * @category form
  */
-
 const ComboBox: React.FC<ComboBoxProps> = ({
   options,
   label,
   value: controlledValue,
-  onSelect,
+  onOptionSelect, // <-- Updated prop name
   placeholder,
   id,
   className,
@@ -61,14 +52,13 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   const [inputValue, setInputValue] = useState<string>('');
   const [filteredOptions, setFilteredOptions] = useState<ComboBoxOption[]>(options);
   const [isOpen, setIsOpen] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(-1); // For keyboard navigation
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const uniqueId = id || `combobox-${Math.random().toString(36).substr(2, 9)}`;
 
-  // Update input value when controlledValue changes externally
   useEffect(() => {
     if (controlledValue !== undefined) {
       const selectedOption = options.find(opt => opt.value === controlledValue);
@@ -76,7 +66,6 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     }
   }, [controlledValue, options]);
 
-  // Filter options based on input
   useEffect(() => {
     if (inputValue === '') {
       setFilteredOptions(options);
@@ -87,7 +76,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         )
       );
     }
-    setHighlightedIndex(-1); // Reset highlight when filtering
+    setHighlightedIndex(-1);
   }, [inputValue, options]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,14 +87,13 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   const handleOptionClick = (option: ComboBoxOption) => {
     setInputValue(option.label);
     setIsOpen(false);
-    onSelect?.(option.value, option.label);
+    onOptionSelect?.(option.value, option.label); // <-- Updated prop name
   };
 
   const handleInputFocus = () => {
     setIsOpen(true);
   };
 
-  // Close dropdown on outside click
   const handleClickOutside = useCallback((event: MouseEvent) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
       setIsOpen(false);
@@ -131,20 +119,18 @@ const ComboBox: React.FC<ComboBoxProps> = ({
       if (highlightedIndex !== -1 && filteredOptions[highlightedIndex]) {
         handleOptionClick(filteredOptions[highlightedIndex]);
       } else {
-        // If no option highlighted, try to find a match or clear
         const matchedOption = options.find(opt => opt.label.toLowerCase() === inputValue.toLowerCase());
         if (matchedOption) {
           handleOptionClick(matchedOption);
         } else {
-          // If no match, clear input and selected value
           setInputValue('');
-          onSelect?.(null, null);
+          onOptionSelect?.(null, null); // <-- Updated prop name
         }
       }
       setIsOpen(false);
     } else if (e.key === 'Escape') {
       setIsOpen(false);
-      inputRef.current?.blur(); // unfocus input
+      inputRef.current?.blur();
     }
   };
 
@@ -163,7 +149,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         onChange={handleInputChange}
         onFocus={handleInputFocus}
         onKeyDown={handleKeyDown}
-        autoComplete="off" // Prevent browser autocomplete
+        autoComplete="off"
         ref={inputRef}
         {...props}
       />
@@ -173,7 +159,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
             <li
               key={option.value}
               className={`px-4 py-2 text-sm cursor-pointer ${
-                highlightedIndex === index ? 'bg-primary/10 text-primary' : 'hover:bg-primary/10 text-text'
+                highlightedIndex === index ? 'bg-primary/10 text-primary' : 'hover:bg-bg-hover text-text'
               }`}
               onClick={() => handleOptionClick(option)}
               role="option"
