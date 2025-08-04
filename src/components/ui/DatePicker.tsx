@@ -1,18 +1,23 @@
-// src/components/ui/DatePicker.tsx
 import React from 'react';
-import ReactDatePicker from 'react-datepicker'; // <--- Removed ReactDatePickerProps import
-import { useTheme } from '../../contexts'; // For theme context
-import Input from './Input'; // Re-use our Input component for the display field
+import ReactDatePicker from 'react-datepicker';
+import { useTheme } from '../../contexts';
+import Input from './Input';
 
-// It's crucial to import react-datepicker's default CSS.
-// We'll then override it in our _ag-custom-theme.scss or a new custom-datepicker.scss
 import 'react-datepicker/dist/react-datepicker.css';
 
-interface DatePickerProps extends Omit<React.ComponentProps<typeof ReactDatePicker>, 'onChange' | 'selected'> { // <--- Corrected type here
+// We simplify our props to no longer extend the complex library types directly.
+// We explicitly define only the props we need for a single date picker.
+interface DatePickerProps {
   label?: string;
   onChange: (date: Date | null) => void;
   selected: Date | null;
-  className?: string; // For additional styling on the input wrapper
+  className?: string;
+  placeholderText?: string;
+  dateFormat?: string;
+  isClearable?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
+  // Add any other simple props from react-datepicker you might need.
 }
 
 /**
@@ -62,8 +67,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
   ...props
 }) => {
   const { theme } = useTheme();
-
-  // Define dynamic class for the date picker portal (if used)
   const portalClassName = `react-datepicker-portal-${theme}`;
 
   return (
@@ -75,14 +78,12 @@ const DatePicker: React.FC<DatePickerProps> = ({
       )}
       <ReactDatePicker
         selected={selected}
-        onChange={onChange}
-        // Use our Input component as the custom input
+        // This simplified inline handler now directly matches what the library
+        // expects for a single date picker, resolving the type error.
+        onChange={(date: Date | null) => onChange(date)}
         customInput={<Input />}
-        // Apply theme-specific classes to the calendar itself
-        popperClassName={portalClassName} // Class for the popper/portal div
+        popperClassName={portalClassName}
         calendarClassName={`bg-card text-text border border-border rounded-md shadow-lg`}
-        // You can add more props like dateFormat, showTimeSelect, isClearable etc.
-        // For actual styling overrides, we will rely on CSS/Sass, which we'll configure next.
         {...props}
       />
     </div>

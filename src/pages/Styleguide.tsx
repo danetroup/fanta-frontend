@@ -71,7 +71,7 @@ const navItems: NavItem[] = [
   { label: 'Feedback', href: '#feedback', children: [
       { label: 'Alerts', href: '#feedback-alerts' },
       { label: 'Tooltips', href: '#feedback-tooltip' },
-      { label: 'Toasts', href: '#feedback-toast' },
+      { label: 'Toast', href: '#feedback-toast' },
       { label: 'Empty State', href: '#feedback-empty' },
   ]},
   { label: 'Utilities', href: '#utilities', children: [

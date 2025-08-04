@@ -1,7 +1,8 @@
 // src/components/ui/MultiSelect.tsx
 import React from 'react';
-import Select, { type StylesConfig, type GroupBase, type OptionsOrGroups } from 'react-select'; // <--- Ensure 'type' is before StylesConfig, GroupBase, and OptionsOrGroups
-import { useTheme } from '../../contexts'; // To get theme context for styling
+// Import the necessary types from the library
+import Select, { type StylesConfig, type GroupBase, type MultiValue, type ActionMeta } from 'react-select';
+import { useTheme } from '../../contexts';
 
 interface MultiSelectOption {
   value: string;
@@ -10,7 +11,7 @@ interface MultiSelectOption {
 
 interface MultiSelectProps {
   options: MultiSelectOption[];
-  value: MultiSelectOption[] | null; // Array of selected options or null
+  value: MultiSelectOption[] | null;
   onChange: (selected: MultiSelectOption[] | null) => void;
   placeholder?: string;
   isClearable?: boolean;
@@ -176,6 +177,15 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     }),
   };
 
+    const handleChange = (
+    newValue: MultiValue<MultiSelectOption>,
+    _actionMeta: ActionMeta<MultiSelectOption>
+  ) => {
+    // Convert the readonly array from the library to a mutable array, or pass null
+    const selectedOptions = newValue ? Array.from(newValue) : null;
+    onChange(selectedOptions);
+  };
+
   return (
     <div className="w-full">
       {label && (
@@ -183,18 +193,18 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           {label}
         </label>
       )}
-      <Select<MultiSelectOption, true> // Specify type arguments here for multi-select
+      <Select<MultiSelectOption, true>
         options={options}
         value={value}
-        onChange={onChange}
-        isMulti // Enable multi-select
+        onChange={handleChange} // <-- Use the new handler here
+        isMulti
         isClearable={isClearable}
         isDisabled={isDisabled}
         isLoading={isLoading}
         isSearchable={isSearchable}
         placeholder={placeholder}
         styles={customStyles}
-        classNamePrefix="react-select" // For easier global targeting if needed
+        classNamePrefix="react-select"
       />
     </div>
   );
